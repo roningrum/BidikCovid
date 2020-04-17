@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.ActionMode
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
@@ -55,7 +56,19 @@ class TambahPasienActivity : AppCompatActivity(), OnMapReadyCallback {
         mapViewUser.onCreate(mapViewBundle)
         mapViewUser.getMapAsync(this)
         button_location.setOnClickListener {
+            showLoading(true)
             startLocationUpdate()
+        }
+    }
+
+    private fun showLoading(state: Boolean) {
+        if(state){
+            pbLoading.visibility = View.VISIBLE
+            button_location.visibility = View.GONE
+        }
+        else{
+            pbLoading.visibility = View.GONE
+            button_location.visibility = View.VISIBLE
         }
     }
 
@@ -83,19 +96,21 @@ class TambahPasienActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun startLocationUpdate() {
         locationViewModel.getLocationData().observe(this,
             Observer {
-                latUser = it.latitude
-                lngUser = it.longitude
-                val lat: String = it.latitude.toString()
-                val lng: String = it.longitude.toString()
-                edt_location.setText("$lat, $lng")
-                setUserMap(gMap, latUser, lngUser)
+                if(it!=null){
+                    showLoading(false)
+                    latUser = it.latitude
+                    lngUser = it.longitude
+                    val lat: String = it.latitude.toString()
+                    val lng: String = it.longitude.toString()
+                    edt_location.setText("$lat, $lng")
+                    setUserMap(gMap, latUser, lngUser)
 
-//            Toast.makeText(
-//                this,
-//                "Location Now: ${it.latitude}, ${it.longitude}",
-//                Toast.LENGTH_SHORT
-//            ).show()
-            Log.d("Location Check", "Lng : ${it.longitude}, Lat : ${it.latitude}")
+                    Log.d("Location Check", "Lng : ${it.longitude}, Lat : ${it.latitude}")
+                }
+                else{
+                    showLoading(true)
+                }
+
         })
     }
 
@@ -103,7 +118,7 @@ class TambahPasienActivity : AppCompatActivity(), OnMapReadyCallback {
         val location = LatLng(latUser, lngUser)
         val markerOptions = MarkerOptions()
         markerOptions.position(location)
-
+        gMap.clear()
         gMap.addMarker(markerOptions)
         gMap.uiSettings.isMapToolbarEnabled = false
         gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,15f))
