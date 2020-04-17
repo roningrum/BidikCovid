@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="vertical">
 
         <TextView
@@ -119,17 +120,18 @@
                 android:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_location_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                android:layout_width="287dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 app:hintAnimationEnabled="false">
 
@@ -138,40 +140,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
+                    android:enabled="false"
                     android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
                 android:id="@+id/button_location"
-                android:layout_width="86dp"
-                android:layout_height="67dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="36dp"
+                android:layout_height="35dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:contentDescription="Lokasi"
-                android:src="@drawable/ic_gps_fixed"
+                android:layout_gravity="end|center_vertical"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="#FEFEFE"
-                android:gravity="center"/>
-        </LinearLayout>
+                android:gravity="center"
+                android:background="@drawable/ic_gps_fixed"/>
+        </FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="16dp">
 
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapViewUser"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="250dp"/>
         </FrameLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_save"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="64dp"
             android:padding="8dp"
             android:background="@color/colorAccent"
             android:layout_marginStart="16dp"
