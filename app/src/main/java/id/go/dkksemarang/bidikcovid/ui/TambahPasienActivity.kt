@@ -2,12 +2,10 @@ package id.go.dkksemarang.bidikcovid.ui
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-import android.location.Location
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.ActionMode
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -15,14 +13,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.material.textfield.TextInputEditText
 import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.location.LocationViewModel
-import id.go.dkksemarang.bidikcovid.location.util.GpsUtil
+import id.go.dkksemarang.bidikcovid.util.GpsUtil
 import kotlinx.android.synthetic.main.activity_tambah_pasien.*
 
 class TambahPasienActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -44,7 +40,8 @@ class TambahPasienActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_tambah_pasien)
 
         locationViewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
-        GpsUtil(this).turnGPSOn(object : GpsUtil.OnGpsListener {
+        GpsUtil(this)
+            .turnGPSOn(object : GpsUtil.OnGpsListener {
             override fun gpsStatus(isGPSEnable: Boolean) {
                 this@TambahPasienActivity.isGPSEnabled = isGPSEnable
             }

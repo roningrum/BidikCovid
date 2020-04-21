@@ -15,7 +15,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "URL_COVID", "\"119.2.50.170:9095/infocovid/index.php/services/\""
+        buildConfigField "String", "URL_COVID", "\"http://119.2.50.170:9095/infocovid/index.php/services/\""
     }
 
     buildTypes {
@@ -49,10 +49,10 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.2.2"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+    implementation 'com.squareup.okhttp3:okhttp:4.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

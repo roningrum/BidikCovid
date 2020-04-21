@@ -1,4 +1,4 @@
-package id.go.dkksemarang.bidikcovid.location.util
+package id.go.dkksemarang.bidikcovid.util
 
 import android.app.Activity
 import android.content.ContentValues

@@ -12,12 +12,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.location.LocationViewModel
-import id.go.dkksemarang.bidikcovid.location.util.GpsUtil
-import java.util.jar.Manifest
+import id.go.dkksemarang.bidikcovid.util.GpsUtil
 
 class MainActivity : AppCompatActivity() {
     private lateinit var locationViewModel: LocationViewModel
@@ -28,7 +26,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
 
         locationViewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
-        GpsUtil(this).turnGPSOn(object : GpsUtil.OnGpsListener {
+        GpsUtil(this)
+            .turnGPSOn(object : GpsUtil.OnGpsListener {
             override fun gpsStatus(isGPSEnable: Boolean) {
                 this@MainActivity.isGPSEnabled = isGPSEnable
             }
