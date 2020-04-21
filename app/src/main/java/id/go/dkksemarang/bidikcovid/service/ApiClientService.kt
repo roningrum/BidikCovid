@@ -1,5 +1,6 @@
 package id.go.dkksemarang.bidikcovid.service
 
+import com.google.gson.GsonBuilder
 import id.go.dkksemarang.bidikcovid.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,4 +28,27 @@ class ApiClientService {
     fun getRetrofitLoginService():ApiService{
         return getRetrofitLogin().create(ApiService::class.java)
     }
+
+    fun getPasienClient(): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(HttpLoggingInterceptor().apply {
+            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+        })
+        .readTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
+        .build()
+
+    fun getRetrofitPasien(): Retrofit {
+        val gson = GsonBuilder().setLenient().create()
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.URL_COVID)
+            .client(getPasienClient())
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+    }
+
+    fun getRetrofitPasienService(): ApiService {
+        return getRetrofitPasien().create(ApiService::class.java)
+    }
+
+
 }

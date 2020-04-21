@@ -2,10 +2,9 @@ package id.go.dkksemarang.bidikcovid.ui
 
 import android.app.SearchManager
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import id.go.dkksemarang.bidikcovid.R
 
 class SearchPasienActivity : AppCompatActivity() {
@@ -28,7 +27,7 @@ class SearchPasienActivity : AppCompatActivity() {
         searchView.queryHint = "Cari nama pasien"
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {
-                Toast.makeText(applicationContext, query, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(applicationContext, query, Toast.LENGTH_SHORT).show()
                 return true
             }
 

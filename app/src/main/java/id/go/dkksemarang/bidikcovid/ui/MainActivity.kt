@@ -1,31 +1,50 @@
 package id.go.dkksemarang.bidikcovid.ui
 
 import android.annotation.SuppressLint
-import android.content.Intent
+import android.app.SearchManager
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.location.LocationViewModel
+import id.go.dkksemarang.bidikcovid.pasien.adapter.InfoCovidFilterAdapter
+import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovid
+import id.go.dkksemarang.bidikcovid.pasien.viewmodel.CovidPasienViewModel
 import id.go.dkksemarang.bidikcovid.util.GpsUtil
+import id.go.dkksemarang.bidikcovid.util.SessionManager
+import kotlinx.android.synthetic.main.main_activity.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var locationViewModel: LocationViewModel
+    private lateinit var covidPasienViewModel: CovidPasienViewModel
+    internal var adapter: InfoCovidFilterAdapter?=null
+
     private var isGPSEnabled = false
+    private var token: String?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
         locationViewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
+        covidPasienViewModel = ViewModelProviders.of(this).get(CovidPasienViewModel::class.java)
+
+        covidPasienViewModel.getPasienCovid().observe(this, Observer {infoCovid ->
+            if(infoCovid!=null){
+                showPasienListResult(infoCovid)
+            }
+
+        })
         GpsUtil(this)
             .turnGPSOn(object : GpsUtil.OnGpsListener {
             override fun gpsStatus(isGPSEnable: Boolean) {
@@ -34,6 +53,18 @@ class MainActivity : AppCompatActivity() {
 
         })
         startLocationUpdate()
+
+        val sessionManager = SessionManager(this)
+        token = sessionManager.fetchAuthToken()
+        rv_pasienList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        rv_pasienList.setHasFixedSize(true)
+        covidPasienViewModel.getInfoCovidPasien(token!!)
+    }
+
+    private fun showPasienListResult(infoCovid: List<InfoCovid>) {
+        adapter = InfoCovidFilterAdapter(infoCovid as ArrayList<InfoCovid>)
+        rv_pasienList.adapter = adapter
+
     }
 
     override fun onStart() {
@@ -77,11 +108,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun startLocationUpdate() {
         locationViewModel.getLocationData().observe(this, Observer {
-            Toast.makeText(
-                this,
-                "Location Now: ${it.latitude}, ${it.longitude}",
-                Toast.LENGTH_SHORT
-            ).show()
+//            Toast.makeText(
+//                this,
+//                "Location Now: ${it.latitude}, ${it.longitude}",
+//                Toast.LENGTH_SHORT
+//            ).show()
             Log.d("Location Check", "Lng : ${it.longitude}, Lat : ${it.longitude}")
         })
     }
@@ -96,21 +127,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+        inflater.inflate(R.menu.search_menu, menu)
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = menu.findItem(R.id.app_bar_search).actionView as androidx.appcompat.widget.SearchView
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        searchView.onActionViewExpanded()
+        searchView.isFocusableInTouchMode = true
+        searchView.isIconified = false
+        searchView.queryHint = "Cari nama pasien"
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.search_menu -> {
-                val searchIntent = Intent(applicationContext, SearchPasienActivity::class.java)
-                startActivity(searchIntent)
+            override fun onQueryTextChange(newText: String): Boolean {
+                adapter?.filter!!.filter(newText)
                 return true
             }
 
-        }
-        return super.onOptionsItemSelected(item)
+        })
+        return super.onCreateOptionsMenu(menu)
     }
 }

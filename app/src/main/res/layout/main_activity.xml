@@ -7,14 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <include
-        android:id="@+id/layout_welcome"
-        layout="@layout/content_layout_welcome"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_pasienList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
