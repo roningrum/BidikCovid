@@ -108,11 +108,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun startLocationUpdate() {
         locationViewModel.getLocationData().observe(this, Observer {
-//            Toast.makeText(
-//                this,
-//                "Location Now: ${it.latitude}, ${it.longitude}",
-//                Toast.LENGTH_SHORT
-//            ).show()
             Log.d("Location Check", "Lng : ${it.longitude}, Lat : ${it.longitude}")
         })
     }
