@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-
         locationViewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
         covidPasienViewModel = ViewModelProviders.of(this).get(CovidPasienViewModel::class.java)
 
@@ -56,9 +55,13 @@ class MainActivity : AppCompatActivity() {
 
         val sessionManager = SessionManager(this)
         token = sessionManager.fetchAuthToken()
+        initView()
+        covidPasienViewModel.getInfoCovidPasien(token!!)
+    }
+
+    private fun initView() {
         rv_pasienList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rv_pasienList.setHasFixedSize(true)
-        covidPasienViewModel.getInfoCovidPasien(token!!)
     }
 
     private fun showPasienListResult(infoCovid: List<InfoCovid>) {
@@ -70,6 +73,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         invokeLocation()
+        initView()
     }
 
     private fun invokeLocation() {
@@ -131,14 +135,16 @@ class MainActivity : AppCompatActivity() {
         searchView.onActionViewExpanded()
         searchView.isFocusableInTouchMode = true
         searchView.isIconified = false
-        searchView.queryHint = "Cari nama pasien"
+        searchView.queryHint = "Cari pasien"
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                adapter?.filter!!.filter(newText)
+                if(adapter!=null){
+                    adapter?.filter!!.filter(newText)
+                }
                 return true
             }
 

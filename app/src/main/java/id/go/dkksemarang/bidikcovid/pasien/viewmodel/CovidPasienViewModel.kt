@@ -7,11 +7,12 @@ import androidx.lifecycle.ViewModel
 import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovid
 import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovidResponse
 import id.go.dkksemarang.bidikcovid.service.ApiClientService
+import id.go.dkksemarang.bidikcovid.ui.MainActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CovidPasienViewModel : ViewModel() {
+class CovidPasienViewModel(val view: MainActivity) : ViewModel() {
     private val covidPasienList: MutableLiveData<List<InfoCovid>> = MutableLiveData()
 
     fun getInfoCovidPasien(token: String) {
