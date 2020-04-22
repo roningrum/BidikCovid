@@ -19,6 +19,8 @@
         android:roundIcon="@mipmap/ic_bidik_covid_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".home.MainMenuActivity"></activity>
+        <activity android:name=".SplashScreen" />
         <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,12 +40,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".ui.TambahPasienActivity"/>
+        <activity android:name=".ui.TambahPasienActivity" />
         <activity android:name=".ui.DetailPasienActivity" />
         <activity
             android:name=".ui.SearchPasienActivity"
             android:parentActivityName=".ui.MainActivity" />
-        <activity android:name=".ui.MainActivity"/>
+        <activity android:name=".ui.MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
