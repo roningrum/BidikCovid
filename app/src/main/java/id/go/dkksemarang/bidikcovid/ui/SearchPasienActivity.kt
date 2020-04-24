@@ -5,7 +5,9 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import id.go.dkksemarang.bidikcovid.R
 
 class SearchPasienActivity : AppCompatActivity() {
@@ -41,6 +43,11 @@ class SearchPasienActivity : AppCompatActivity() {
                 fragment.arguments = data
                 supportFragmentManager.beginTransaction().replace(R.id.contain_searh_pasien, fragment).commit()
                 Log.d("Query", "Key$SEARCH_QUERY query Key $query")
+
+                if(query == ""){
+                    searchView.clearFocus()
+                }
+                hideKeyBoard(searchView)
                 return true
             }
 
@@ -50,5 +57,11 @@ class SearchPasienActivity : AppCompatActivity() {
 
         })
         return super.onCreateOptionsMenu(menu)
+    }
+
+    fun hideKeyBoard(searchView: SearchView) {
+        val imm: InputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(searchView.windowToken, 0)
     }
 }

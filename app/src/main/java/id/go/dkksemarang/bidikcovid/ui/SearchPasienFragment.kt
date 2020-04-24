@@ -68,10 +68,9 @@ class SearchPasienFragment : Fragment() {
     private fun hideData(){
         layout_notfound.visibility = View.VISIBLE
         rv_pasien_covid_List.visibility = View.GONE
-        tv_tambah_data.setOnClickListener {
+        btn_tambah_data.setOnClickListener {
             val intent = Intent(activity, TambahPasienActivity::class.java)
             startActivity(intent)
-            activity?.finish()
         }
     }
 
