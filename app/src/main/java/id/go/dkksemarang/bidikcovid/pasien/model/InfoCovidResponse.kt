@@ -20,7 +20,11 @@ data class InfoCovid(
     @SerializedName("status")
     var status: String? = null,
     @SerializedName("alasan")
-    var alasan: String? = null
+    var alasan: String? = null,
+    @SerializedName("lat")
+    var lattitude: Double? = null,
+    @SerializedName("lng")
+    var longitude: Double? = null
 )
 
 data class InfoCovidResponse(

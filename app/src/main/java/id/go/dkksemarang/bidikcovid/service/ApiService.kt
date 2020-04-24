@@ -15,4 +15,5 @@ interface ApiService {
     @Headers("x-username:investigasi")
     @GET("pasien")
     fun pasienCovid(@Query("token") token: String, @Query("nama") nama: String): Call<InfoCovidResponse>
+
 }
