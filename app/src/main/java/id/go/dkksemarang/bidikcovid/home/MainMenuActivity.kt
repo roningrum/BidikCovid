@@ -15,7 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.location.LocationViewModel
-import id.go.dkksemarang.bidikcovid.ui.MainActivity
+import id.go.dkksemarang.bidikcovid.ui.SearchPasienActivity
 import id.go.dkksemarang.bidikcovid.util.GpsUtil
 
 class MainMenuActivity : AppCompatActivity() {
@@ -101,7 +101,7 @@ class MainMenuActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             R.id.search_menu ->{
-                val intent= Intent(applicationContext, MainActivity::class.java)
+                val intent= Intent(applicationContext, SearchPasienActivity::class.java)
                 startActivity(intent)
                 true
             }
