@@ -9,25 +9,37 @@ import androidx.recyclerview.widget.RecyclerView
 import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovid
 import kotlinx.android.synthetic.main.item_info_covid_pasien.view.*
+import java.util.*
 
-class InfoCovidFilterAdapter(private val infoCovidList: ArrayList<InfoCovid>) : RecyclerView.Adapter<InfoCovidFilterAdapter.InfoCovidViewHolder>(), Filterable{
+class InfoCovidFilterAdapter(private val infoCovidList: ArrayList<InfoCovid>) :
+    RecyclerView.Adapter<InfoCovidFilterAdapter.InfoCovidViewHolder>(), Filterable {
 
-    private var infoCovidFilterList : ArrayList<InfoCovid>? = null
+    private var infoCovidFilterList: ArrayList<InfoCovid>? = null
+
+    init {
+        infoCovidFilterList = infoCovidList
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ) = InfoCovidViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_info_covid_pasien, parent, false))
+    ) = InfoCovidViewHolder(
+        LayoutInflater.from(parent.context).inflate(R.layout.item_info_covid_pasien, parent, false)
+    )
 
-    override fun getItemCount(): Int =
-        if(infoCovidFilterList==null) 0 else infoCovidFilterList!!.size
+    override fun getItemCount(): Int {
+        return if (infoCovidFilterList == null) 0 else infoCovidFilterList!!.size
+    }
 
-    override fun onBindViewHolder(holder: InfoCovidFilterAdapter.InfoCovidViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: InfoCovidFilterAdapter.InfoCovidViewHolder,
+        position: Int
+    ) {
         holder.bindCovidPasie(infoCovidFilterList!![position])
     }
 
     inner class InfoCovidViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindCovidPasie(infoCovid: InfoCovid){
+        fun bindCovidPasie(infoCovid: InfoCovid) {
             itemView.tv_nama_pasien.text = infoCovid.nama
             itemView.tv_alamat_pasien.text = infoCovid.alamat
             itemView.tv_status_pasien.text = infoCovid.status
@@ -35,15 +47,17 @@ class InfoCovidFilterAdapter(private val infoCovidList: ArrayList<InfoCovid>) : 
     }
 
     override fun getFilter(): Filter {
-        return object  : Filter(){
+        return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
-                infoCovidFilterList = if(charSearch.isEmpty()){
+                infoCovidFilterList = if (charSearch.isEmpty()) {
                     infoCovidList
-                } else{
+                } else {
                     val resultList = ArrayList<InfoCovid>()
-                    for(row in infoCovidList){
-                        if(row.nama!!.contains(charSearch)|| row.flag!!.contains(charSearch) || row.alamat!!.contains(charSearch)){
+                    for (row in infoCovidList) {
+                        if (row.nama!!.contains(charSearch) || row.flag!!.contains(charSearch) || row.alamat!!.contains(
+                                charSearch)
+                        ) {
                             resultList.add(row)
                         }
                     }
@@ -60,9 +74,5 @@ class InfoCovidFilterAdapter(private val infoCovidList: ArrayList<InfoCovid>) : 
             }
 
         }
-    }
-
-    init {
-        infoCovidFilterList = infoCovidList
     }
 }

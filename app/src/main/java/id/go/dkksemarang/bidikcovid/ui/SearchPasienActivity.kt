@@ -8,10 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import id.go.dkksemarang.bidikcovid.R
 
 class SearchPasienActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_pasien)
+
+        val searchListFragment= SearchPasienFragment()
+        val fragmentManager = supportFragmentManager
+        val fragmentTransition = fragmentManager.beginTransaction()
+        fragmentTransition.replace(R.id.mainFragment, searchListFragment)
+        fragmentTransition.commit()
 
     }
 
@@ -27,7 +32,6 @@ class SearchPasienActivity : AppCompatActivity() {
         searchView.queryHint = "Cari nama pasien"
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {
-//                Toast.makeText(applicationContext, query, Toast.LENGTH_SHORT).show()
                 return true
             }
 

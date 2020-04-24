@@ -19,15 +19,17 @@
         android:roundIcon="@mipmap/ic_bidik_covid_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.MainMenuActivity"></activity>
-        <activity android:name=".SplashScreen" />
-        <activity android:name=".login.LoginActivity">
+        <activity android:name=".home.MainMenuActivity" />
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".login.LoginActivity"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
