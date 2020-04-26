@@ -10,8 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import id.go.dkksemarang.bidikcovid.PasienCovidDetail
+import id.go.dkksemarang.bidikcovid.PasienCovidDetail.Companion.ALAMAT
+import id.go.dkksemarang.bidikcovid.PasienCovidDetail.Companion.ID_PASIEN
+import id.go.dkksemarang.bidikcovid.PasienCovidDetail.Companion.JK
+import id.go.dkksemarang.bidikcovid.PasienCovidDetail.Companion.STATUS
+import id.go.dkksemarang.bidikcovid.PasienCovidDetail.Companion.UMUR
 import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.pasien.adapter.InfoCovidAdapter
+import id.go.dkksemarang.bidikcovid.pasien.adapter.OnItemClickCallback
 import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovid
 import id.go.dkksemarang.bidikcovid.pasien.viewmodel.CovidPasienViewModel
 import id.go.dkksemarang.bidikcovid.ui.SearchPasienActivity.Companion.SEARCH_QUERY
@@ -78,6 +85,18 @@ class SearchPasienFragment : Fragment() {
         val adapter = InfoCovidAdapter(infoCovid, this.context)
         rv_pasien_covid_List.adapter = adapter
         adapter.notifyDataSetChanged()
+        adapter.setOnItemClickCallback(object : OnItemClickCallback{
+            override fun onItemClicked(infoCovid: InfoCovid) {
+                val intent = Intent(activity, PasienCovidDetail::class.java)
+                intent.putExtra(PasienCovidDetail.NAMA, infoCovid.nama)
+                intent.putExtra(STATUS,infoCovid.status)
+                intent.putExtra(ALAMAT, infoCovid.alamat)
+                intent.putExtra(ID_PASIEN, infoCovid.pasien_id)
+                intent.putExtra(UMUR, infoCovid.umur)
+                intent.putExtra(JK, infoCovid.jk)
+                startActivity(intent)
+            }
+        })
     }
 
     fun showLoading(state: Boolean) {

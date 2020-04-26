@@ -21,4 +21,6 @@ class SessionManager(context: Context){
     fun fetchAuthToken(): String{
         return prefs.getString(USER_TOKEN, "")!!
     }
+
+
 }

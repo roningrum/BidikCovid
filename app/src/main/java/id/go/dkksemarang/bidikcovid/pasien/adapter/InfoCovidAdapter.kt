@@ -10,6 +10,11 @@ import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovid
 import kotlinx.android.synthetic.main.item_info_covid_pasien.view.*
 
 class InfoCovidAdapter(val infoCovidList: List<InfoCovid>, var context: Context?) : RecyclerView.Adapter<InfoCovidAdapter.InfoCovidViewHolder>(){
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -27,6 +32,13 @@ class InfoCovidAdapter(val infoCovidList: List<InfoCovid>, var context: Context?
             itemView.tv_nama_pasien.text = infoCovid.nama
             itemView.tv_alamat_pasien.text = infoCovid.alamat
             itemView.tv_status_pasien.text = infoCovid.status
+            itemView.setOnClickListener {
+                onItemClickCallback.onItemClicked(infoCovidList[adapterPosition])
+            }
         }
     }
+}
+
+interface OnItemClickCallback{
+    fun onItemClicked(infoCovid: InfoCovid)
 }

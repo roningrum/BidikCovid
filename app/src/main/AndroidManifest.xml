@@ -19,6 +19,8 @@
         android:roundIcon="@mipmap/ic_bidik_covid_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".PasienCovidDetail"
+            android:parentActivityName=".home.MainMenuActivity"/>
         <activity android:name=".home.MainMenuActivity" />
         <activity
             android:name=".SplashScreen"
@@ -29,7 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".login.LoginActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

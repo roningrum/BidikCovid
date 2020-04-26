@@ -50,5 +50,9 @@ class ApiClientService {
         return getRetrofitPasien().create(ApiService::class.java)
     }
 
+    fun getRetrofitTambahService(): ApiService{
+        return getRetrofitPasien().create(ApiService::class.java)
+    }
+
 
 }

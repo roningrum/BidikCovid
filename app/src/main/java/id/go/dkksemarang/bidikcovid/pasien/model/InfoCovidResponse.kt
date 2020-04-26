@@ -1,7 +1,10 @@
 package id.go.dkksemarang.bidikcovid.pasien.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class InfoCovid(
     @SerializedName("pasien_id")
     var pasien_id: String? = null,
@@ -22,10 +25,10 @@ data class InfoCovid(
     @SerializedName("alasan")
     var alasan: String? = null,
     @SerializedName("lat")
-    var lattitude: Double? = null,
+    var latitude: Double? =null,
     @SerializedName("lng")
-    var longitude: Double? = null
-)
+    var longitude: Double? =null
+):Parcelable
 
 data class InfoCovidResponse(
     @SerializedName("infocovid")
