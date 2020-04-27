@@ -19,13 +19,13 @@ interface ApiService {
     ): Call<InfoCovidResponse>
 
     @Headers("x-username:investigasi")
-    @FormUrlEncoded
     @POST("tambahLokasiPasien")
+    @FormUrlEncoded
     fun tambahLokasiPasien(
         @Query("token") token: String,
-        @Query("pasien_id") pasien_id: String,
-        @Field("lat") lat: Double,
-        @Field("lng") lng: Double
+        @Field("id_pasien") id_pasien: String,
+        @Field("latitude") latitude: Double,
+        @Field("longitude") longitude: Double
     ): Call<pasienLokasi>
 
 }

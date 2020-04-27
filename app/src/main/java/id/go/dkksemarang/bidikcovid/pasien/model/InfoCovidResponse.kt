@@ -27,15 +27,12 @@ data class InfoCovid(
 ):Parcelable
 
 data class pasienLokasi(
+    @SerializedName("id_pasien")
+    var id_pasien: String? = null,
     @SerializedName("lat")
     var latitude: Double? =null,
     @SerializedName("lng")
     var longitude: Double? =null
-)
-
-data class PasienLokasiResponse(
-    @SerializedName("infocovid")
-    var pasienLokasi: List<pasienLokasi>
 )
 
 data class InfoCovidResponse(

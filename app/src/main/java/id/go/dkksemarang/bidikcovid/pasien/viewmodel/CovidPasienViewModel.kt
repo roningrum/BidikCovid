@@ -15,6 +15,7 @@ import retrofit2.Response
 class CovidPasienViewModel: ViewModel() {
     private val covidPasienList: MutableLiveData<List<InfoCovid>> = MutableLiveData()
     private val covidPasienLokasi : MutableLiveData<pasienLokasi> = MutableLiveData()
+
     fun getInfoCovidPasien(token: String, nama: String) {
         val infoCovidPasienCall: Call<InfoCovidResponse> = ApiClientService().getRetrofitPasienService().pasienCovid(token, nama)
         infoCovidPasienCall.enqueue(object: Callback<InfoCovidResponse>{
@@ -49,7 +50,10 @@ class CovidPasienViewModel: ViewModel() {
             }
 
             override fun onResponse(call: Call<pasienLokasi>, response: Response<pasienLokasi>) {
-                covidPasienLokasi.value = response.body()
+                if(response.isSuccessful){
+                    covidPasienLokasi.value = response.body()
+                }
+
             }
 
         })
