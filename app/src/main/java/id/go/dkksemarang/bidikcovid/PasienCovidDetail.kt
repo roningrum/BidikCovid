@@ -17,14 +17,12 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import id.go.dkksemarang.bidikcovid.location.LocationViewModel
-import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovid
 import id.go.dkksemarang.bidikcovid.pasien.viewmodel.CovidPasienViewModel
 import id.go.dkksemarang.bidikcovid.ui.TambahPasienActivity
 import id.go.dkksemarang.bidikcovid.util.GpsUtil
 import id.go.dkksemarang.bidikcovid.util.SessionManager
 import kotlinx.android.synthetic.main.activity_pasien_covid_detail.*
 import kotlinx.android.synthetic.main.activity_pasien_covid_detail.mapViewUser
-import kotlinx.android.synthetic.main.activity_tambah_pasien.*
 import kotlinx.android.synthetic.main.activity_tambah_pasien.edt_location
 import kotlinx.android.synthetic.main.content_location_layout.*
 
@@ -63,8 +61,11 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback{
 
         locationViewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
         covidPasienViewModel = ViewModelProviders.of(this).get(CovidPasienViewModel::class.java)
-        covidPasienViewModel.setPasienCovid().observe(this, Observer { infoCovid->
-           updateLocation(infoCovid)
+        val sessionManager = SessionManager(this)
+
+        covidPasienViewModel.setPasienCovid().observe(this, Observer {lokasi->
+            lokasi.latitude = sessionManager.fetchLokasiLat()
+            lokasi.longitude = sessionManager.fetchLokasiLng()
         })
         GpsUtil(this)
             .turnGPSOn(object : GpsUtil.OnGpsListener {
@@ -85,11 +86,6 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback{
 
     }
 
-    private fun updateLocation(infoCovid: InfoCovid) {
-        infoCovid.latitude = latUser
-        infoCovid.longitude = lngUser
-        Log.d("Data yang terisi", "$latUser, $lngUser")
-    }
 
 
     override fun onStart() {

@@ -17,6 +17,7 @@ import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.location.LocationViewModel
 import id.go.dkksemarang.bidikcovid.ui.SearchPasienActivity
 import id.go.dkksemarang.bidikcovid.util.GpsUtil
+import id.go.dkksemarang.bidikcovid.util.SessionManager
 
 class MainMenuActivity : AppCompatActivity() {
     private lateinit var locationViewModel: LocationViewModel
@@ -80,6 +81,9 @@ class MainMenuActivity : AppCompatActivity() {
 
     private fun startLocationUpdate() {
         locationViewModel.getLocationData().observe(this, Observer {
+            val sessionManager = SessionManager(this)
+            sessionManager.saveLokasiLat(it.latitude)
+            sessionManager.saveLokasiLng(it.longitude)
             Log.d("Location Check", "Lng : ${it.longitude}, Lat : ${it.latitude}")
         })
     }

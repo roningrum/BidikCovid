@@ -10,6 +10,27 @@ class SessionManager(context: Context){
 
     companion object{
         const val USER_TOKEN ="user_token"
+        const val LOKASI_USER = "lokasi_user"
+    }
+
+    fun saveLokasiLat(lat: Double){
+        val editor = prefs.edit()
+        editor.putFloat(LOKASI_USER, lat.toFloat())
+        editor.apply()
+    }
+
+    fun fetchLokasiLat(): Double{
+        return prefs.getFloat(LOKASI_USER, 0.0F).toDouble()
+    }
+
+    fun saveLokasiLng(lng: Double){
+        val editor = prefs.edit()
+        editor.putFloat(LOKASI_USER, lng.toFloat())
+        editor.apply()
+    }
+
+    fun fetchLokasiLng(): Double{
+        return prefs.getFloat(LOKASI_USER, 0.0F).toDouble()
     }
 
     fun saveAuthToken(token: String){
