@@ -52,6 +52,7 @@ class SearchPasienActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
+                Log.d("Query", "$newText")
                 return false
             }
 

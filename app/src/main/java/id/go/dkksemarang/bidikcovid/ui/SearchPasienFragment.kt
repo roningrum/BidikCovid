@@ -2,6 +2,8 @@ package id.go.dkksemarang.bidikcovid.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +26,6 @@ import id.go.dkksemarang.bidikcovid.pasien.viewmodel.CovidPasienViewModel
 import id.go.dkksemarang.bidikcovid.ui.SearchPasienActivity.Companion.SEARCH_QUERY
 import id.go.dkksemarang.bidikcovid.util.SessionManager
 import kotlinx.android.synthetic.main.fragment_search_pasien.*
-import kotlinx.android.synthetic.main.layout_not_found.*
 
 /**
  * A simple [Fragment] subclass.
@@ -42,12 +43,15 @@ class SearchPasienFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showLoading(true)
         covidPasienViewModel = ViewModelProviders.of(this).get(CovidPasienViewModel::class.java)
         covidPasienViewModel.getPasienCovid().observe(viewLifecycleOwner, Observer { infoCovid ->
+            showLoading(true)
             if (infoCovid != null) {
-                showLoading(false)
-                showCovidPasienListResult(infoCovid)
+                val handler = Handler(Looper.getMainLooper())
+                handler.postDelayed({
+                    showLoading(false)
+                    showCovidPasienListResult(infoCovid)
+                }, 500)
             }
             else{
                 showLoading(false)
@@ -65,9 +69,9 @@ class SearchPasienFragment : Fragment() {
         Log.d("Token", "$token Query $querySearchResult")
         if (querySearchResult != null) {
             covidPasienViewModel.getInfoCovidPasien(token, querySearchResult)
-            if(querySearchResult != querySearchResult){
-                hideData()
-            }
+//            if(querySearchResult != querySearchResult){
+//                hideData()
+//            }
         }
 
     }
@@ -75,10 +79,10 @@ class SearchPasienFragment : Fragment() {
     private fun hideData(){
         layout_notfound.visibility = View.VISIBLE
         rv_pasien_covid_List.visibility = View.GONE
-        btn_tambah_data.setOnClickListener {
-            val intent = Intent(activity, TambahPasienActivity::class.java)
-            startActivity(intent)
-        }
+//        btn_tambah_data.setOnClickListener {
+//            val intent = Intent(activity, TambahPasienActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
     private fun showCovidPasienListResult(infoCovid: List<InfoCovid>) {
@@ -106,5 +110,7 @@ class SearchPasienFragment : Fragment() {
             pb_loading.visibility = View.GONE
         }
     }
+
+
 
 }
