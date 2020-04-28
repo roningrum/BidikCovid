@@ -47,7 +47,6 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".ui.TambahPasienActivity" />
-        <activity android:name=".ui.DetailPasienActivity" />
         <activity
             android:name=".ui.SearchPasienActivity"
             android:parentActivityName=".ui.MainActivity" />
