@@ -3,7 +3,6 @@ package id.go.dkksemarang.bidikcovid.ui
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -47,14 +46,9 @@ class SearchPasienFragment : Fragment() {
         covidPasienViewModel.getPasienCovid().observe(viewLifecycleOwner, Observer { infoCovid ->
             showLoading(true)
             if (infoCovid != null) {
-                val handler = Handler(Looper.getMainLooper())
-                handler.postDelayed({
-                    showLoading(false)
-                    showCovidPasienListResult(infoCovid)
-                }, 500)
+                showCovidPasienListResult(infoCovid)
             }
             else{
-                showLoading(false)
                 hideData()
             }
         })
@@ -77,6 +71,7 @@ class SearchPasienFragment : Fragment() {
     }
 
     private fun hideData(){
+        showLoading(false)
         layout_notfound.visibility = View.VISIBLE
         rv_pasien_covid_List.visibility = View.GONE
 //        btn_tambah_data.setOnClickListener {
@@ -86,21 +81,26 @@ class SearchPasienFragment : Fragment() {
     }
 
     private fun showCovidPasienListResult(infoCovid: List<InfoCovid>) {
-        val adapter = InfoCovidAdapter(infoCovid, this.context)
-        rv_pasien_covid_List.adapter = adapter
-        adapter.notifyDataSetChanged()
-        adapter.setOnItemClickCallback(object : OnItemClickCallback{
-            override fun onItemClicked(infoCovid: InfoCovid) {
-                val intent = Intent(activity, PasienCovidDetail::class.java)
-                intent.putExtra(PasienCovidDetail.NAMA, infoCovid.nama)
-                intent.putExtra(STATUS,infoCovid.status)
-                intent.putExtra(ALAMAT, infoCovid.alamat)
-                intent.putExtra(ID_PASIEN, infoCovid.pasien_id)
-                intent.putExtra(UMUR, infoCovid.umur)
-                intent.putExtra(JK, infoCovid.jk)
-                startActivity(intent)
-            }
-        })
+        val handler = Handler()
+        handler.postDelayed({
+            showLoading(false)
+            val adapter = InfoCovidAdapter(infoCovid, this.context)
+            rv_pasien_covid_List.adapter = adapter
+            adapter.notifyDataSetChanged()
+            adapter.setOnItemClickCallback(object : OnItemClickCallback{
+                override fun onItemClicked(infoCovid: InfoCovid) {
+                    val intent = Intent(activity, PasienCovidDetail::class.java)
+                    intent.putExtra(PasienCovidDetail.NAMA, infoCovid.nama)
+                    intent.putExtra(STATUS,infoCovid.status)
+                    intent.putExtra(ALAMAT, infoCovid.alamat)
+                    intent.putExtra(ID_PASIEN, infoCovid.pasien_id)
+                    intent.putExtra(UMUR, infoCovid.umur)
+                    intent.putExtra(JK, infoCovid.jk)
+                    startActivity(intent)
+                }
+            })
+        }, 500)
+
     }
 
     fun showLoading(state: Boolean) {

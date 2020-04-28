@@ -1,8 +1,6 @@
 package id.go.dkksemarang.bidikcovid.login.viewmodel
 
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,9 +17,7 @@ class LoginViewModel : ViewModel() {
         val loginResponse: Call<LoginResponse> = ApiClientService().getRetrofitLoginService().login()
         loginResponse.enqueue(object : Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                val view: View? = null
-                loginResponses.value = null
-                Toast.makeText(view?.context, "Koneksi Gagal", Toast.LENGTH_SHORT).show()
+                Log.d("Gagal", "Pesan ${t.message}")
             }
 
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {

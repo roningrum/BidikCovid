@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.home.MainMenuActivity
-import id.go.dkksemarang.bidikcovid.login.model.LoginResponse
 import id.go.dkksemarang.bidikcovid.login.viewmodel.LoginViewModel
 import id.go.dkksemarang.bidikcovid.util.SessionManager
 import kotlinx.android.synthetic.main.activity_login.*
@@ -19,22 +18,20 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        val sessionManager = SessionManager(applicationContext)
         loginViewModel= ViewModelProviders.of(this).get(LoginViewModel::class.java)
         loginViewModel.getLogin().observe(this, Observer {login ->
             if(login != null){
-                accessLogin(login)
+                sessionManager.saveAuthToken(login.token)
+                Log.d("TokenLogin", "Your Token : ${login.token}")
+
             }
         })
-        loginViewModel.getLoginResponse()
-    }
-
-    private fun accessLogin(login: LoginResponse) {
-        btn_login.setOnClickListener {view->
-            val sessionManager = SessionManager(view.context)
-            sessionManager.saveAuthToken(login.token)
+        btn_login.setOnClickListener {
+            loginViewModel.getLoginResponse()
             val intent = Intent(this, MainMenuActivity::class.java)
             startActivity(intent)
-            Log.d("Token", "Your Token : ${login.token}")
         }
+
     }
 }

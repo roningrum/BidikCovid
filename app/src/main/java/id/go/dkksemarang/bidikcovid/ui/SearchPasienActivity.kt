@@ -17,7 +17,7 @@ class SearchPasienActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_pasien)
-
+        title = ""
         val searchListFragment= SearchPasienFragment()
         val fragmentManager = supportFragmentManager
         val fragmentTransition = fragmentManager.beginTransaction()
