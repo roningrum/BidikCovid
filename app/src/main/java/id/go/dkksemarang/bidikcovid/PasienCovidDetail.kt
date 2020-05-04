@@ -87,8 +87,6 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
 
         covidPasienViewModel.setPasienCovid().observe(this, Observer { pasienLokasi ->
             updateDataPasien(pasienLokasi)
-            Toast.makeText(this, "Success Terdaftar", Toast.LENGTH_SHORT).show()
-
         })
         GpsUtil(this)
             .turnGPSOn(object : GpsUtil.OnGpsListener {
@@ -109,14 +107,23 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
 
         btn_update_data.setOnClickListener {
             covidPasienViewModel.updateLokasiPasien(token, pasien_id!!, latUser, lngUser)
+            Toast.makeText(this, "Lokasi telah terupdate", Toast.LENGTH_SHORT).show()
         }
 
     }
 
     private fun updateDataPasien(pasienLokasi: pasienLokasi) {
-        pasienLokasi.latitude = latUser
-        pasienLokasi.longitude = lngUser
-        pasienLokasi.id_pasien = pasien_id
+        when {
+            pasienLokasi.id_pasien != null -> {
+                Toast.makeText(this, "Data sudah ada", Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                pasienLokasi.latitude = latUser
+                pasienLokasi.longitude = lngUser
+                pasienLokasi.id_pasien = pasien_id
+            }
+        }
+
     }
 
 

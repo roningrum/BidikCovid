@@ -8,8 +8,15 @@ import retrofit2.http.*
 
 interface ApiService {
     @Headers("x-username: investigasi", "x-password: pecovid")
-    @GET("login")
+    @POST("login")
     fun login(): Call<LoginResponse>
+
+    @POST("login")
+    fun loginUser(
+        @Header("x-username: investigasi") username: String,
+        @Header("x-password: pecovid") password: String
+    ): Call<LoginResponse>
+
 
     @Headers("x-username:investigasi")
     @GET("pasien")

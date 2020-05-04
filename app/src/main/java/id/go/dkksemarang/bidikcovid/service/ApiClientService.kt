@@ -9,10 +9,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class ApiClientService {
+
+    private val interceptor = HttpLoggingInterceptor()
+
     fun getClient(): OkHttpClient = OkHttpClient().newBuilder()
-        .addInterceptor(HttpLoggingInterceptor().apply {
-            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.HEADERS
-        })
+        .addInterceptor(interceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS))
+        .connectTimeout(60, TimeUnit.SECONDS)
         .readTimeout(0, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
         .build()
