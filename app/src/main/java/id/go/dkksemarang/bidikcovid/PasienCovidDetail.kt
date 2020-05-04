@@ -107,7 +107,11 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
 
         btn_update_data.setOnClickListener {
             covidPasienViewModel.updateLokasiPasien(token, pasien_id!!, latUser, lngUser)
-            Toast.makeText(this, "Lokasi telah terupdate", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Lokasi telah terupdate. $nama dengan posisi lokasi $latUser, $lngUser",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
