@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import id.go.dkksemarang.bidikcovid.login.LoginActivity
+import id.go.dkksemarang.bidikcovid.login.LoginUserActivity
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,9 +16,11 @@ class SplashScreen : AppCompatActivity() {
     private fun startApp() {
         val handler = Handler()
         handler.postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, LoginUserActivity::class.java)
             startActivity(intent)
-        }, 1000)
+            finish()
+        }, 5000)
+        overridePendingTransition(R.anim.splash_in_animation, R.anim.splash_out_animation)
 
     }
 
