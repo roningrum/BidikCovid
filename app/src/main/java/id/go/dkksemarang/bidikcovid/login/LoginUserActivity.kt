@@ -35,14 +35,43 @@ class LoginUserActivity : AppCompatActivity() {
 
 
         btn_login_user.setOnClickListener {
-            if (username.toString() == "investigasi" && password.toString() == "pecovid") {
-                loginViewModel.getLoginResponse()
-                val intent = Intent(this, MainMenuActivity::class.java)
-                startActivity(intent)
-                Toast.makeText(applicationContext, "Berhasil Masuk", Toast.LENGTH_SHORT).show()
+            btn_login_user.isEnabled = false
+            btn_login_user.text = "Loading..."
+
+            if (username.isEmpty()) {
+                Toast.makeText(
+                    applicationContext,
+                    "Username tidak boleh kosong",
+                    Toast.LENGTH_SHORT
+                ).show()
+                btn_login_user.isEnabled = true
+                btn_login_user.text = "Login"
+
             } else {
-                Toast.makeText(applicationContext, "Gagal Masuk", Toast.LENGTH_SHORT).show()
+                if (password.isEmpty()) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Password tidak boleh kosong",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    btn_login_user.isEnabled = true
+                    btn_login_user.text = "Login"
+                } else {
+                    if (username.toString() == "investigasi" && password.toString() == "pecovid") {
+                        loginViewModel.getLoginResponse()
+                        val intent = Intent(this, MainMenuActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                        Toast.makeText(applicationContext, "Berhasil Masuk", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        btn_login_user.isEnabled = true
+                        btn_login_user.text = "Login"
+                        Toast.makeText(applicationContext, "Gagal Masuk", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
+
         }
     }
 

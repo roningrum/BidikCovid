@@ -86,10 +86,8 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
         val token = sessionManager.fetchAuthToken()
 
         covidPasienViewModel.setPasienCovid().observe(this, Observer { pasienLokasi ->
-            if (pasienLokasi == null) {
+            if (pasienLokasi.id_pasien != null) {
                 updateDataPasien(pasienLokasi)
-            } else {
-                Toast.makeText(applicationContext, "Data Sudah ada", Toast.LENGTH_SHORT).show()
             }
 
         })
