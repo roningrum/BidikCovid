@@ -1,6 +1,7 @@
 package id.go.dkksemarang.bidikcovid.login
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -42,6 +43,13 @@ class LoginUserActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(applicationContext, "Gagal Masuk", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    override fun getResources(): Resources {
+        return super.getResources().apply {
+            configuration.fontScale = 1F
+            updateConfiguration(configuration, displayMetrics)
         }
     }
 }
