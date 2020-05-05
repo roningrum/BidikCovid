@@ -29,6 +29,8 @@ class CovidPasienViewModel: ViewModel() {
             ) {
                 if(response.isSuccessful){
                     covidPasienList.value = response.body()?.infocovid
+                } else {
+                    Log.w("Pesan", "Gagal karena ${response.message()}")
                 }
             }
         })

@@ -6,45 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".login.LoginUserActivity">
 
+
+    <ImageView
+        android:id="@+id/img_bg_login"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/petugas" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_weight="1"
+        android:background="#4F0D497E"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <EditText
         android:id="@+id/edt_username"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="64dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="152dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_input_condition"
+        android:drawableStart="@drawable/ic_person"
+        android:drawablePadding="8dp"
         android:ems="10"
         android:hint="username"
         android:inputType="textPersonName"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/edt_password"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_username" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_subtitle_app" />
 
     <Button
         android:id="@+id/btn_login_user"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bg_orange_button"
+        android:padding="16dp"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/img_bg_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_password"
+        app:layout_constraintVertical_bias="0.209" />
+
+    <EditText
+        android:id="@+id/edt_password"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/bg_orange_button"
-        android:text="Login"
+        android:background="@drawable/bg_input_condition"
+        android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="8dp"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_username" />
+
+    <TextView
+        android:id="@+id/tv_heading_login_form"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:text="Selamat datang"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_heading_app_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Bidik Covid"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_heading_login_form" />
+
+    <TextView
+        android:id="@+id/tv_subtitle_app"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/open_sans"
+        android:text="Aplikasi Investigasi Petugas Covid"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_heading_app_name" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

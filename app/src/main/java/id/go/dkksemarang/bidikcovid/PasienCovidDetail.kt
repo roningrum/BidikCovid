@@ -36,7 +36,7 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
         const val ALAMAT = "Alamat"
         const val ID_PASIEN = "IDPASIEN"
         const val UMUR = "UMUR"
-        const val MAP_VIEW_BUNDLE = "mapView"
+//        const val MAP_VIEW_BUNDLE = "mapView"
     }
 
     private lateinit var locationViewModel: LocationViewModel
@@ -86,7 +86,12 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
         val token = sessionManager.fetchAuthToken()
 
         covidPasienViewModel.setPasienCovid().observe(this, Observer { pasienLokasi ->
-            updateDataPasien(pasienLokasi)
+            if (pasienLokasi == null) {
+                updateDataPasien(pasienLokasi)
+            } else {
+                Toast.makeText(applicationContext, "Data Sudah ada", Toast.LENGTH_SHORT).show()
+            }
+
         })
         GpsUtil(this)
             .turnGPSOn(object : GpsUtil.OnGpsListener {
@@ -117,17 +122,9 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun updateDataPasien(pasienLokasi: pasienLokasi) {
-        when {
-            pasienLokasi.id_pasien != null -> {
-                Toast.makeText(this, "Data sudah ada", Toast.LENGTH_SHORT).show()
-            }
-            else -> {
-                pasienLokasi.latitude = latUser
-                pasienLokasi.longitude = lngUser
-                pasienLokasi.id_pasien = pasien_id
-            }
-        }
-
+        pasienLokasi.latitude = latUser
+        pasienLokasi.longitude = lngUser
+        pasienLokasi.id_pasien = pasien_id
     }
 
 
