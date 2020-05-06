@@ -106,8 +106,12 @@ class SearchPasienFragment : Fragment() {
     fun showLoading(state: Boolean) {
         if (state) {
             pb_loading.visibility = View.VISIBLE
+            pb_loading.playAnimation()
+            tv_waiting_text.visibility = View.VISIBLE
         } else {
+            pb_loading.pauseAnimation()
             pb_loading.visibility = View.GONE
+            tv_waiting_text.visibility = View.GONE
         }
     }
 

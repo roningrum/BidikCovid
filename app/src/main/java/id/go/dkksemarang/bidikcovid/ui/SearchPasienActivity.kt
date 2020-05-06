@@ -35,7 +35,7 @@ class SearchPasienActivity : AppCompatActivity() {
         searchView.isFocusableInTouchMode = true
         searchView.isIconified = false
         searchView.queryHint = "Cari nama pasien"
-        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 val data = Bundle()
                 data.putString(SEARCH_QUERY, query)
@@ -46,8 +46,8 @@ class SearchPasienActivity : AppCompatActivity() {
 
                 if(query == ""){
                     searchView.clearFocus()
+                    hideKeyBoard(searchView)
                 }
-                hideKeyBoard(searchView)
                 return true
             }
 
