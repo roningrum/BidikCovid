@@ -109,7 +109,8 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
         }
 
         btn_update_data.setOnClickListener {
-            covidPasienViewModel.updateLokasiPasien(token, pasien_id!!, latUser, lngUser)
+            val username = sessionManager.fetchAuthUsername()
+            covidPasienViewModel.updateLokasiPasien(token, pasien_id!!, username, latUser, lngUser)
             Toast.makeText(
                 this,
                 "Lokasi telah terupdate. $nama dengan posisi lokasi $latUser, $lngUser",

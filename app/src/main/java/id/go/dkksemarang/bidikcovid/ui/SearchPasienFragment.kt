@@ -60,9 +60,10 @@ class SearchPasienFragment : Fragment() {
         val querySearchResult = arguments?.getString(SEARCH_QUERY)
         val sessionManager = SessionManager(view.context)
         val token = sessionManager.fetchAuthToken()
+        val username = sessionManager.fetchAuthUsername()
         Log.d("Token", "$token Query $querySearchResult")
         if (querySearchResult != null) {
-            covidPasienViewModel.getInfoCovidPasien(token, querySearchResult)
+            covidPasienViewModel.getInfoCovidPasien(username, token,  querySearchResult)
 //            if(querySearchResult != querySearchResult){
 //                hideData()
 //            }

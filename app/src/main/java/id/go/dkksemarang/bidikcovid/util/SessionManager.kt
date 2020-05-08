@@ -22,7 +22,7 @@ class SessionManager(context: Context){
     }
 
     fun fetchAuthUsername(): String {
-        return prefs.getString(USER_TOKEN, "")!!
+        return prefs.getString(USERNAME, "")!!
     }
 
     fun saveAuthToken(token: String){

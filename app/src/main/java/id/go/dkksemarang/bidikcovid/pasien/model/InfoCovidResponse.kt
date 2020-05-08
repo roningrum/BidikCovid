@@ -36,6 +36,10 @@ data class pasienLokasi(
 )
 
 data class InfoCovidResponse(
+    @SerializedName("message")
+    var message: String?=null,
+    @SerializedName("status")
+    var status: Boolean=false,
     @SerializedName("infocovid")
     var infocovid: List<InfoCovid>
 )

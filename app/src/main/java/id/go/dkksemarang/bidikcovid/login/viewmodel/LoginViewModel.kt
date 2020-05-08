@@ -13,20 +13,20 @@ import retrofit2.Response
 class LoginViewModel : ViewModel() {
     private val loginResponses: MutableLiveData<LoginResponse> = MutableLiveData()
 
-    fun getLoginResponse() {
-        val loginResponse: Call<LoginResponse> = ApiClientService().getRetrofitLoginService().login()
-        loginResponse.enqueue(object : Callback<LoginResponse> {
-            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Log.d("Gagal", "Pesan ${t.message}")
-            }
-
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                loginResponses.value = response.body()
-                Log.d("Token", "Tokenku${loginResponses.value?.token}")
-
-            }
-        })
-    }
+//    fun getLoginResponse() {
+//        val loginResponse: Call<LoginResponse> = ApiClientService().getRetrofitLoginService().login()
+//        loginResponse.enqueue(object : Callback<LoginResponse> {
+//            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+//                Log.d("Gagal", "Pesan ${t.message}")
+//            }
+//
+//            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+//                loginResponses.value = response.body()
+//                Log.d("Token", "Tokenku${loginResponses.value?.token}")
+//
+//            }
+//        })
+//    }
 
     fun getLoginUserResponse(username: String, password: String) {
         val loginResponse: Call<LoginResponse> =
@@ -37,7 +37,7 @@ class LoginViewModel : ViewModel() {
             }
 
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                if (password == "pecovid" && username == "investigasi") {
+                if(response.isSuccessful){
                     loginResponses.value = response.body()
                     Log.d("Token", "Tokenku${loginResponses.value?.token}")
                 }

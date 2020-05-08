@@ -16,11 +16,12 @@ import kotlinx.android.synthetic.main.activity_login_user.*
 
 class LoginUserActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_user)
-        val sessionManager = SessionManager(applicationContext)
+        sessionManager = SessionManager(applicationContext)
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         loginViewModel.getLogin().observe(this, Observer { login ->
             if (login != null) {
@@ -57,18 +58,14 @@ class LoginUserActivity : AppCompatActivity() {
                     btn_login_user.isEnabled = true
                     btn_login_user.text = "Login"
                 } else {
-                    if (username.toString() == "investigasi" && password.toString() == "pecovid") {
-                        loginViewModel.getLoginResponse()
-                        val intent = Intent(this, MainMenuActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                        Toast.makeText(applicationContext, "Berhasil Masuk", Toast.LENGTH_SHORT)
-                            .show()
-                    } else {
-                        btn_login_user.isEnabled = true
-                        btn_login_user.text = "Login"
-                        Toast.makeText(applicationContext, "Gagal Masuk", Toast.LENGTH_SHORT).show()
-                    }
+                    loginViewModel.getLoginUserResponse(username.toString(), password.toString())
+                    sessionManager.saveAuthUsername(username.toString())
+                    val intent = Intent(this, MainMenuActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    Toast.makeText(applicationContext, "Berhasil Masuk", Toast.LENGTH_SHORT)
+                        .show()
+                    Log.d("Username", "Your Username : ${sessionManager.fetchAuthUsername()}")
                 }
             }
 
