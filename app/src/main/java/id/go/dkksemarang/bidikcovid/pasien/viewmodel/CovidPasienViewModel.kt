@@ -8,6 +8,7 @@ import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovid
 import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovidResponse
 import id.go.dkksemarang.bidikcovid.pasien.model.pasienLokasi
 import id.go.dkksemarang.bidikcovid.service.ApiClientService
+import id.go.dkksemarang.bidikcovid.ui.SearchPasienFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,24 +39,6 @@ class CovidPasienViewModel : ViewModel() {
         })
     }
 
-//    fun getInfoCovidPasienS(username: String, token: String, nama: String) {
-//        val infoCovidPasienCall: Call<String> =
-//            ApiClientService().getRetrofitPasienService().pasienCovidS(token, nama, username)
-//        infoCovidPasienCall.enqueue(object : Callback<String> {
-//            override fun onFailure(call: Call<String>, t: Throwable) {
-//                Log.d("Pesan", "Gagal karena ${t.message}")
-//            }
-//
-//            override fun onResponse(call: Call<String>, response: Response<String>) {
-//                Log.d("Pesan", "Hasil karena ${call.isExecuted}")
-//            }
-//
-//        })
-//    }
-//
-//    fun getPasienCovidS(): LiveData<String> {
-//        return covidPasienS
-//    }
 
     fun getPasienCovid(): LiveData<List<InfoCovid>> {
         return covidPasienList

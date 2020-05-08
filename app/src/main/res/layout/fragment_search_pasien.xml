@@ -38,7 +38,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="8dp"
-        android:text="Tunggu Sebentar"
+        android:text="Sedang Mencari"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

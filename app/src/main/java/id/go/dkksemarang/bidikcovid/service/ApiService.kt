@@ -7,9 +7,6 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
-//    @Headers("x-username: investigasi", "x-password: pecovid")
-//    @POST("login")
-//    fun login(): Call<LoginResponse>
 
     @GET("login")
     fun loginUser(
@@ -24,13 +21,6 @@ interface ApiService {
         @Query("token") token: String,
         @Query("nama") nama: String
     ): Call<InfoCovidResponse>
-
-//    @GET("pasien")
-//    fun pasienCovidS(
-//        @Header("x-username") username: String,
-//        @Query("token") token: String,
-//        @Query("nama") nama: String
-//    ): Call<String>
 
 
     @POST("tambahLokasiPasien")

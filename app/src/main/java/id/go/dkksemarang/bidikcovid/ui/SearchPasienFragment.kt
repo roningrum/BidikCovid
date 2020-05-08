@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -29,8 +30,10 @@ import kotlinx.android.synthetic.main.fragment_search_pasien.*
 /**
  * A simple [Fragment] subclass.
  */
+@Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
 class SearchPasienFragment : Fragment() {
     private lateinit var covidPasienViewModel: CovidPasienViewModel
+    private  var  querySearchResult: String?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,16 +43,17 @@ class SearchPasienFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_search_pasien, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         covidPasienViewModel = ViewModelProviders.of(this).get(CovidPasienViewModel::class.java)
         covidPasienViewModel.getPasienCovid().observe(viewLifecycleOwner, Observer { infoCovid ->
-            showLoading(true)
             if (infoCovid != null) {
                 showCovidPasienListResult(infoCovid)
             }
             else{
                 hideData()
+                showLoading(false)
             }
         })
 
@@ -57,34 +61,27 @@ class SearchPasienFragment : Fragment() {
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rv_pasien_covid_List.setHasFixedSize(true)
 
-        val querySearchResult = arguments?.getString(SEARCH_QUERY)
+        querySearchResult = arguments?.getString(SEARCH_QUERY)
         val sessionManager = SessionManager(view.context)
         val token = sessionManager.fetchAuthToken()
         val username = sessionManager.fetchAuthUsername()
+
         Log.d("Token", "$token Query $querySearchResult")
         if (querySearchResult != null) {
-            covidPasienViewModel.getInfoCovidPasien(username, token,  querySearchResult)
-//            if(querySearchResult != querySearchResult){
-//                hideData()
-//            }
+            covidPasienViewModel.getInfoCovidPasien(username, token,  querySearchResult!!)
         }
 
     }
 
-    private fun hideData(){
-        showLoading(false)
+    fun hideData(){
         layout_notfound.visibility = View.VISIBLE
         rv_pasien_covid_List.visibility = View.GONE
-//        btn_tambah_data.setOnClickListener {
-//            val intent = Intent(activity, TambahPasienActivity::class.java)
-//            startActivity(intent)
-//        }
+
     }
 
     private fun showCovidPasienListResult(infoCovid: List<InfoCovid>) {
         val handler = Handler()
         handler.postDelayed({
-            showLoading(false)
             val adapter = InfoCovidAdapter(infoCovid, this.context)
             rv_pasien_covid_List.adapter = adapter
             adapter.notifyDataSetChanged()
@@ -101,6 +98,7 @@ class SearchPasienFragment : Fragment() {
                 }
             })
         }, 500)
+        showLoading(false)
 
     }
 
