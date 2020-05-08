@@ -48,8 +48,10 @@ class SearchPasienFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         covidPasienViewModel = ViewModelProviders.of(this).get(CovidPasienViewModel::class.java)
         covidPasienViewModel.getPasienCovid().observe(viewLifecycleOwner, Observer { infoCovid ->
+            showLoading(true)
             if (infoCovid != null) {
                 showCovidPasienListResult(infoCovid)
+                showLoading(false)
             }
             else{
                 hideData()
@@ -98,7 +100,7 @@ class SearchPasienFragment : Fragment() {
                 }
             })
         }, 500)
-        showLoading(false)
+//        showLoading(false)
 
     }
 
