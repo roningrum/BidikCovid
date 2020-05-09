@@ -7,10 +7,11 @@
 
     <ImageView
         android:id="@+id/ic_person"
-        android:layout_width="70dp"
+        android:layout_width="85dp"
         android:layout_height="85dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -51,11 +52,25 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:textColor="#3F51B5"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/ic_person"
         app:layout_constraintTop_toBottomOf="@+id/tv_alamat_pasien"
         tools:text="ODP" />
+
+    <TextView
+        android:id="@+id/tv_koordinat_pasien"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ic_person"
+        app:layout_constraintTop_toBottomOf="@+id/tv_status_pasien"
+        tools:text="-6.0909090 , 110.0000 " />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

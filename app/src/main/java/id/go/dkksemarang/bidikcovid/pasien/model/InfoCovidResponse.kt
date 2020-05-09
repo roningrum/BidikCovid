@@ -23,7 +23,11 @@ data class InfoCovid(
     @SerializedName("status")
     var status: String? = null,
     @SerializedName("alasan")
-    var alasan: String? = null
+    var alasan: String? = null,
+    @SerializedName("latitude")
+    var lat: Double?=null,
+    @SerializedName("longitude")
+    var lng: Double?=null
 ):Parcelable
 
 data class pasienLokasi(

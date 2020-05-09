@@ -17,7 +17,6 @@ import retrofit2.Response
 class CovidPasienViewModel : ViewModel() {
     private val covidPasienList: MutableLiveData<List<InfoCovid>> = MutableLiveData()
     private val covidPasienLokasi: MutableLiveData<pasienLokasi> = MutableLiveData()
-    private lateinit var view: SearchPasienFragment
 
     fun getInfoCovidPasien(username: String, token: String, nama: String) {
         val infoCovidPasienCall: Call<InfoCovidResponse> =
@@ -36,7 +35,6 @@ class CovidPasienViewModel : ViewModel() {
                     Log.w("Username", "Username $username")
                 } else {
                     Log.w("Pesan", "Gagal karena ${response.body()?.message}")
-                    Toast.makeText(view.context, "Gagal Tampil", Toast.LENGTH_SHORT).show()
 
                 }
             }

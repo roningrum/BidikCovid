@@ -32,6 +32,9 @@ class InfoCovidAdapter(val infoCovidList: List<InfoCovid>, var context: Context?
             itemView.tv_nama_pasien.text = infoCovid.nama
             itemView.tv_alamat_pasien.text = infoCovid.alamat
             itemView.tv_status_pasien.text = infoCovid.status
+            val lat = infoCovid.lat.toString()
+            val lng = infoCovid.lng.toString()
+            itemView.tv_koordinat_pasien.text = "$lat, $lng"
             itemView.setOnClickListener {
                 onItemClickCallback.onItemClicked(infoCovidList[adapterPosition])
             }

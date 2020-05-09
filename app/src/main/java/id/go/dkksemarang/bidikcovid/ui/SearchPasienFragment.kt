@@ -30,7 +30,6 @@ import kotlinx.android.synthetic.main.fragment_search_pasien.*
 /**
  * A simple [Fragment] subclass.
  */
-@Suppress("TYPE_INFERENCE_ONLY_INPUT_TYPES_WARNING")
 class SearchPasienFragment : Fragment() {
     private lateinit var covidPasienViewModel: CovidPasienViewModel
     private  var  querySearchResult: String?=null
