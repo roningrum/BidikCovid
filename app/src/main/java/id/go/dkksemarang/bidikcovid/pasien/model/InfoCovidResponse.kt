@@ -33,9 +33,9 @@ data class InfoCovid(
 data class pasienLokasi(
     @SerializedName("id_pasien")
     var id_pasien: String? = null,
-    @SerializedName("lat")
+    @SerializedName("latitude")
     var latitude: Double? =null,
-    @SerializedName("lng")
+    @SerializedName("longitude")
     var longitude: Double? =null
 )
 

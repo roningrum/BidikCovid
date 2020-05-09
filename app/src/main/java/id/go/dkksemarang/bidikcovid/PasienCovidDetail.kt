@@ -54,6 +54,8 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
 
     var latUser: Double = 0.0
     var lngUser: Double = 0.0
+    var token: String ?= null
+    var username: String?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +85,8 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
         val sessionManager = SessionManager(this)
         latUser = sessionManager.fetchLokasiLat()
         lngUser = sessionManager.fetchLokasiLng()
-        val token = sessionManager.fetchAuthToken()
+        token = sessionManager.fetchAuthToken()
+        username = sessionManager.fetchAuthUsername()
 
         covidPasienViewModel.setPasienCovid().observe(this, Observer { pasienLokasi ->
             if (pasienLokasi.id_pasien != null) {
@@ -109,8 +112,8 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
         }
 
         btn_update_data.setOnClickListener {
-            val username = sessionManager.fetchAuthUsername()
-            covidPasienViewModel.updateLokasiPasien(token, pasien_id!!, username, latUser, lngUser)
+            covidPasienViewModel.updateLokasiPasien(username!!, token!!, pasien_id!!, latUser, lngUser)
+            Log.d("Data Masuk", "$username, $token, $pasien_id, $latUser, $lngUser")
             Toast.makeText(
                 this,
                 "Lokasi telah terupdate. $nama dengan posisi lokasi $latUser, $lngUser",
