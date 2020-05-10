@@ -36,7 +36,6 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
         const val ALAMAT = "Alamat"
         const val ID_PASIEN = "IDPASIEN"
         const val UMUR = "UMUR"
-//        const val MAP_VIEW_BUNDLE = "mapView"
     }
 
     private lateinit var locationViewModel: LocationViewModel
@@ -114,11 +113,6 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
         btn_update_data.setOnClickListener {
             covidPasienViewModel.updateLokasiPasien(username!!, token!!, pasien_id!!, latUser, lngUser, this)
             Log.d("Data Masuk", "$username, $token, $pasien_id, $latUser, $lngUser")
-//            Toast.makeText(
-//                this,
-//                "Lokasi telah terupdate. $nama dengan posisi lokasi $latUser, $lngUser",
-//                Toast.LENGTH_SHORT
-//            ).show()
 
         }
 

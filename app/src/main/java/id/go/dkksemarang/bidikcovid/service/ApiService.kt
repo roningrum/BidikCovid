@@ -2,7 +2,6 @@ package id.go.dkksemarang.bidikcovid.service
 
 import id.go.dkksemarang.bidikcovid.login.model.LoginResponse
 import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovidResponse
-import id.go.dkksemarang.bidikcovid.pasien.model.pasienLokasi
 import retrofit2.Call
 import retrofit2.http.*
 

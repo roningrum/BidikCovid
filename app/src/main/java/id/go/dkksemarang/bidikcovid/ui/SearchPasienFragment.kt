@@ -69,7 +69,7 @@ class SearchPasienFragment : Fragment() {
 
         Log.d("Token", "$token Query $querySearchResult")
         if (querySearchResult != null) {
-            covidPasienViewModel.getInfoCovidPasien(username, token,  querySearchResult!!)
+            covidPasienViewModel.getInfoCovidPasien(username, token,  querySearchResult!!, view.context)
         }
 
     }

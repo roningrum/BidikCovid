@@ -21,7 +21,7 @@ class CovidPasienViewModel : ViewModel() {
 //
     var context : Context? = null
 
-    fun getInfoCovidPasien(username: String, token: String, nama: String) {
+    fun getInfoCovidPasien(username: String, token: String, nama: String, context: Context) {
         val infoCovidPasienCall: Call<InfoCovidResponse> =
             ApiClientService().getRetrofitPasienService().pasienCovid(username, token, nama)
         infoCovidPasienCall.enqueue(object : Callback<InfoCovidResponse> {
@@ -37,6 +37,7 @@ class CovidPasienViewModel : ViewModel() {
                     covidPasienList.value = response.body()?.infocovid
                     Log.w("Username", "Username $username")
                 } else {
+                    Toast.makeText(context, " ${response.body()?.message}", Toast.LENGTH_SHORT).show()
                     Log.w("Pesan", "Gagal karena ${response.body()?.message}")
 
                 }
@@ -70,9 +71,6 @@ class CovidPasienViewModel : ViewModel() {
             }
 
             override fun onResponse(call: Call<InfoCovidResponse>, response: Response<InfoCovidResponse>) {
-//                if (response.isSuccessful) {
-//                    covidPasienLokasi.value = response.body()
-//                }
                 if (response.isSuccessful) {
                     Toast.makeText(context,"${response.body()?.message}" ,Toast.LENGTH_LONG).show()
                 } else {
