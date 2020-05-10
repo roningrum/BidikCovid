@@ -1,4 +1,4 @@
-package id.go.dkksemarang.bidikcovid
+package id.go.dkksemarang.bidikcovid.ui
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
@@ -16,10 +16,10 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.location.LocationViewModel
 import id.go.dkksemarang.bidikcovid.pasien.model.pasienLokasi
 import id.go.dkksemarang.bidikcovid.pasien.viewmodel.CovidPasienViewModel
-import id.go.dkksemarang.bidikcovid.ui.TambahPasienActivity
 import id.go.dkksemarang.bidikcovid.util.GpsUtil
 import id.go.dkksemarang.bidikcovid.util.SessionManager
 import kotlinx.android.synthetic.main.activity_pasien_covid_detail.*

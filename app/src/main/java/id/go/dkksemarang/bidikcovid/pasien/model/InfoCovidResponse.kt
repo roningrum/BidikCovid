@@ -30,15 +30,6 @@ data class InfoCovid(
     var lng: Double?=null
 ):Parcelable
 
-data class pasienLokasi(
-    @SerializedName("id_pasien")
-    var id_pasien: String? = null,
-    @SerializedName("latitude")
-    var latitude: Double? =null,
-    @SerializedName("longitude")
-    var longitude: Double? =null
-)
-
 data class InfoCovidResponse(
     @SerializedName("message")
     var message: String?=null,

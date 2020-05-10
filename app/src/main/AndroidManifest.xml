@@ -34,7 +34,7 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".PasienCovidDetail"
+            android:name=".ui.PasienCovidDetail"
             android:parentActivityName=".home.MainMenuActivity" />
         <activity android:name=".home.MainMenuActivity" />
         <activity
