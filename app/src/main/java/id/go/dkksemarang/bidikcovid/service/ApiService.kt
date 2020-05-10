@@ -31,6 +31,6 @@ interface ApiService {
         @Field("id_pasien") id_pasien: String,
         @Field("latitude") latitude: Double,
         @Field("longitude") longitude: Double
-    ): Call<pasienLokasi>
+    ): Call<InfoCovidResponse>
 
 }

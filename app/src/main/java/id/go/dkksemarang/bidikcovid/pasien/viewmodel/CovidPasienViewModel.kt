@@ -1,5 +1,6 @@
 package id.go.dkksemarang.bidikcovid.pasien.viewmodel
 
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
@@ -17,6 +18,8 @@ import retrofit2.Response
 class CovidPasienViewModel : ViewModel() {
     private val covidPasienList: MutableLiveData<List<InfoCovid>> = MutableLiveData()
     private val covidPasienLokasi: MutableLiveData<pasienLokasi> = MutableLiveData()
+//
+    var context : Context? = null
 
     fun getInfoCovidPasien(username: String, token: String, nama: String) {
         val infoCovidPasienCall: Call<InfoCovidResponse> =
@@ -55,18 +58,25 @@ class CovidPasienViewModel : ViewModel() {
         token: String,
         pasien_id: String,
         lat: Double,
-        lng: Double
+        lng: Double,
+        context : Context
     ) {
-        val updateLokasiPasien: Call<pasienLokasi> = ApiClientService().getRetrofitTambahService()
+        this.context = context
+        val updateLokasiPasien: Call<InfoCovidResponse> = ApiClientService().getRetrofitTambahService()
             .tambahLokasiPasien(username, token, pasien_id, lat, lng)
-        updateLokasiPasien.enqueue(object : Callback<pasienLokasi> {
-            override fun onFailure(call: Call<pasienLokasi>, t: Throwable) {
+        updateLokasiPasien.enqueue(object : Callback<InfoCovidResponse> {
+            override fun onFailure(call: Call<InfoCovidResponse>, t: Throwable) {
                 Log.w("Pesan", "Gagal karena ${t.message}")
             }
 
-            override fun onResponse(call: Call<pasienLokasi>, response: Response<pasienLokasi>) {
+            override fun onResponse(call: Call<InfoCovidResponse>, response: Response<InfoCovidResponse>) {
+//                if (response.isSuccessful) {
+//                    covidPasienLokasi.value = response.body()
+//                }
                 if (response.isSuccessful) {
-                    covidPasienLokasi.value = response.body()
+                    Toast.makeText(context,"${response.body()?.message}" ,Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(context,"Response tidak berhasil" ,Toast.LENGTH_LONG).show()
                 }
 
             }
