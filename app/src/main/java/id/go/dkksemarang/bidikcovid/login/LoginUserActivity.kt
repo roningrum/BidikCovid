@@ -3,6 +3,7 @@ package id.go.dkksemarang.bidikcovid.login
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -39,7 +40,9 @@ class LoginUserActivity : AppCompatActivity() {
             btn_login_user.isEnabled = false
             btn_login_user.text = "Loading..."
 
-            if (username.isEmpty()) {
+
+
+            if (TextUtils.isEmpty(username)) {
                 Toast.makeText(
                     applicationContext,
                     "Username tidak boleh kosong",
@@ -49,7 +52,7 @@ class LoginUserActivity : AppCompatActivity() {
                 btn_login_user.text = "Login"
 
             } else {
-                if (password.isEmpty()) {
+                if (TextUtils.isEmpty(password)) {
                     Toast.makeText(
                         applicationContext,
                         "Password tidak boleh kosong",
