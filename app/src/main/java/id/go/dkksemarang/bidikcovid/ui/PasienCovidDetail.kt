@@ -36,6 +36,7 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
         const val ALAMAT = "Alamat"
         const val ID_PASIEN = "IDPASIEN"
         const val UMUR = "UMUR"
+        const val MAP_VIEW_BUNDLE = "mapView"
     }
 
     private lateinit var locationViewModel: LocationViewModel
@@ -101,7 +102,7 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
             })
 
         if (savedInstanceState != null) {
-            mapViewBundle = savedInstanceState.getBundle(TambahPasienActivity.MAP_VIEW_BUNDLE)
+            mapViewBundle = savedInstanceState.getBundle(MAP_VIEW_BUNDLE)
         }
         mapViewUser.onCreate(mapViewBundle)
         mapViewUser.getMapAsync(this)
@@ -133,10 +134,10 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
-        mapViewBundle = outState.getBundle(TambahPasienActivity.MAP_VIEW_BUNDLE)
+        mapViewBundle = outState.getBundle(MAP_VIEW_BUNDLE)
         if (mapViewBundle == null) {
             mapViewBundle = Bundle()
-            outState.putBundle(TambahPasienActivity.MAP_VIEW_BUNDLE, mapViewBundle)
+            outState.putBundle(MAP_VIEW_BUNDLE, mapViewBundle)
             mapViewUser.onSaveInstanceState(mapViewBundle)
         }
     }
@@ -226,10 +227,10 @@ class PasienCovidDetail : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        mapViewBundle = outState.getBundle(TambahPasienActivity.MAP_VIEW_BUNDLE)
+        mapViewBundle = outState.getBundle(MAP_VIEW_BUNDLE)
         if (mapViewBundle == null) {
             mapViewBundle = Bundle()
-            outState.putBundle(TambahPasienActivity.MAP_VIEW_BUNDLE, mapViewBundle)
+            outState.putBundle(MAP_VIEW_BUNDLE, mapViewBundle)
             mapViewUser.onSaveInstanceState(mapViewBundle)
         }
     }
