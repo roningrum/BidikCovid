@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -35,11 +36,9 @@ class LoginUserActivity : AppCompatActivity() {
         val username = edt_username.text
         val password = edt_password.text
 
-
         btn_login_user.setOnClickListener {
             btn_login_user.isEnabled = false
             btn_login_user.text = "Loading..."
-
 
 
             if (TextUtils.isEmpty(username)) {
@@ -75,6 +74,12 @@ class LoginUserActivity : AppCompatActivity() {
         }
     }
 
+    private fun isEmpty(etText: EditText): Boolean {
+        if (etText.text.toString().trim().length > 0) {
+            return false
+        }
+        return true
+    }
     override fun getResources(): Resources {
         return super.getResources().apply {
             configuration.fontScale = 1F
