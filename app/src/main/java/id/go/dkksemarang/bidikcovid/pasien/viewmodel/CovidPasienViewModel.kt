@@ -10,7 +10,6 @@ import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovid
 import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovidResponse
 import id.go.dkksemarang.bidikcovid.pasien.model.pasienLokasi
 import id.go.dkksemarang.bidikcovid.service.ApiClientService
-import id.go.dkksemarang.bidikcovid.ui.SearchPasienFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,7 +52,6 @@ class CovidPasienViewModel : ViewModel() {
     fun setPasienCovid(): LiveData<pasienLokasi> {
         return covidPasienLokasi
     }
-
     fun updateLokasiPasien(
         username: String,
         token: String,

@@ -21,6 +21,12 @@ interface ApiService {
         @Query("nama") nama: String
     ): Call<InfoCovidResponse>
 
+    @GET("pasien")
+    fun daftarPasien(
+        @Header("x-username") username: String,
+        @Query("token") token: String,
+        @Query("status") status: Int
+    ): Call<InfoCovidResponse>
 
     @POST("tambahLokasiPasien")
     @FormUrlEncoded

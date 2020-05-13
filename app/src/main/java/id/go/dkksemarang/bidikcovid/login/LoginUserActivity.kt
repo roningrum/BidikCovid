@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import id.go.dkksemarang.bidikcovid.BidikMainActivity
 import id.go.dkksemarang.bidikcovid.R
-import id.go.dkksemarang.bidikcovid.home.MainMenuActivity
 import id.go.dkksemarang.bidikcovid.login.viewmodel.LoginViewModel
 import id.go.dkksemarang.bidikcovid.util.SessionManager
 import kotlinx.android.synthetic.main.activity_login_user.*
@@ -62,7 +62,7 @@ class LoginUserActivity : AppCompatActivity() {
                 } else {
                     loginViewModel.getLoginUserResponse(username.toString(), password.toString())
                     sessionManager.saveAuthUsername(username.toString())
-                    val intent = Intent(this, MainMenuActivity::class.java)
+                    val intent = Intent(this, BidikMainActivity::class.java)
                     startActivity(intent)
                     finish()
                     Toast.makeText(applicationContext, "Berhasil Masuk", Toast.LENGTH_SHORT)
