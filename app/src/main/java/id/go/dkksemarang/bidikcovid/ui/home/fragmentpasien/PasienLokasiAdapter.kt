@@ -11,6 +11,12 @@ import kotlinx.android.synthetic.main.item_info_covid_pasien.view.*
 
 class PasienLokasiAdapter(val pasienCovid: List<InfoCovid>, var context: Context?) :
     RecyclerView.Adapter<PasienLokasiAdapter.PasienViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -35,7 +41,13 @@ class PasienLokasiAdapter(val pasienCovid: List<InfoCovid>, var context: Context
             val lat = infoCovid.lat.toString()
             val lng = infoCovid.lng.toString()
             itemView.tv_koordinat_pasien.text = "$lat, $lng"
+            itemView.setOnClickListener {
+                onItemClickCallback.onItemClicked(pasienCovid[adapterPosition])
+            }
         }
     }
+}
 
+interface OnItemClickCallback {
+    fun onItemClicked(infoCovid: InfoCovid)
 }

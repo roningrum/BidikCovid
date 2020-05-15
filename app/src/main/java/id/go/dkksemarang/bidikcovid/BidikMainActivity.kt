@@ -1,7 +1,10 @@
 package id.go.dkksemarang.bidikcovid
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -13,10 +16,15 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import id.go.dkksemarang.bidikcovid.login.LoginUserActivity
+import id.go.dkksemarang.bidikcovid.ui.SearchPasienActivity
+import id.go.dkksemarang.bidikcovid.util.SessionManager
 
 class BidikMainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var sessionManager: SessionManager
+    var username: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +40,6 @@ class BidikMainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
@@ -41,12 +47,42 @@ class BidikMainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        //USERNAME
+        val heView = navView.getHeaderView(0)
+        sessionManager = SessionManager(this)
+        val textUsernameHeader = heView.findViewById<TextView>(R.id.tv_header_username)
+        textUsernameHeader.text = sessionManager.fetchAuthUsername()
+
+        navView.menu.findItem(R.id.nav_slideshow).setOnMenuItemClickListener { menuItem ->
+            sessionManager.logout(sessionManager.fetchAuthUsername())
+            val intent = Intent(this@BidikMainActivity, LoginUserActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            true
+        }
+
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.bidik_main, menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.search_menu -> {
+                val intent = Intent(applicationContext, SearchPasienActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

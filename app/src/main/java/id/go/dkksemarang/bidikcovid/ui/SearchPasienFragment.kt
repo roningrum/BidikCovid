@@ -11,11 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import id.go.dkksemarang.bidikcovid.ui.PasienCovidDetail.Companion.ALAMAT
-import id.go.dkksemarang.bidikcovid.ui.PasienCovidDetail.Companion.ID_PASIEN
-import id.go.dkksemarang.bidikcovid.ui.PasienCovidDetail.Companion.JK
-import id.go.dkksemarang.bidikcovid.ui.PasienCovidDetail.Companion.STATUS
-import id.go.dkksemarang.bidikcovid.ui.PasienCovidDetail.Companion.UMUR
+import id.go.dkksemarang.bidikcovid.EditPasienActivity
 import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.pasien.adapter.InfoCovidAdapter
 import id.go.dkksemarang.bidikcovid.pasien.adapter.OnItemClickCallback
@@ -86,13 +82,15 @@ class SearchPasienFragment : Fragment() {
             adapter.notifyDataSetChanged()
             adapter.setOnItemClickCallback(object : OnItemClickCallback{
                 override fun onItemClicked(infoCovid: InfoCovid) {
-                    val intent = Intent(activity, PasienCovidDetail::class.java)
-                    intent.putExtra(PasienCovidDetail.NAMA, infoCovid.nama)
-                    intent.putExtra(STATUS,infoCovid.status)
-                    intent.putExtra(ALAMAT, infoCovid.alamat)
-                    intent.putExtra(ID_PASIEN, infoCovid.pasien_id)
-                    intent.putExtra(UMUR, infoCovid.umur)
-                    intent.putExtra(JK, infoCovid.jk)
+                    val intent = Intent(activity, EditPasienActivity::class.java)
+                    intent.putExtra(EditPasienActivity.NAMA, infoCovid.nama)
+                    intent.putExtra(EditPasienActivity.STATUS, infoCovid.status)
+                    intent.putExtra(EditPasienActivity.ALAMAT, infoCovid.alamat)
+                    intent.putExtra(EditPasienActivity.ID_PASIEN, infoCovid.pasien_id)
+                    intent.putExtra(EditPasienActivity.UMUR, infoCovid.umur)
+                    intent.putExtra(EditPasienActivity.JK, infoCovid.jk)
+                    intent.putExtra(EditPasienActivity.LATITUDE, infoCovid.lat)
+                    intent.putExtra(EditPasienActivity.LONGITUDE, infoCovid.lng)
                     startActivity(intent)
                 }
             })

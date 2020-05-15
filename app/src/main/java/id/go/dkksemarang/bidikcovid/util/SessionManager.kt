@@ -56,5 +56,12 @@ class SessionManager(context: Context){
         return prefs.getFloat(LOKASI_USER, 0.0F).toDouble()
     }
 
+    fun logout(username: String) {
+        val editor = prefs.edit()
+        editor.remove(username)
+        editor.clear()
+        editor.apply()
+    }
+
 
 }

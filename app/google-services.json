@@ -1,0 +1,355 @@
+{
+  "project_info": {
+    "project_number": "66466532810",
+    "firebase_url": "https://pustaka-222602.firebaseio.com",
+    "project_id": "pustaka-222602",
+    "storage_bucket": "pustaka-222602.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66466532810:android:cb59bbeca95d564b",
+        "android_client_info": {
+          "package_name": "com.multisolusi.dinkes.kontersemarang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66466532810-fd6st8k2ci58pmi4fqb379vru7boi673.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.multisolusi.dinkes.kontersemarang",
+            "certificate_hash": "234f6902209f153baf6a906d95b404a3dd6bda63"
+          }
+        },
+        {
+          "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxr-cpfeQ31O9WrFJBvnm1cddYVFLU8wM"
+        },
+        {
+          "current_key": "AIzaSyBIUgk1fDy3ICL6nCtLjBzsUARzAlGZSQ4"
+        },
+        {
+          "current_key": "AIzaSyDlxgHBTXh6Mp9YLn0wC64M1izSWv-1hxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66466532810:android:23d3d955918125e0",
+        "android_client_info": {
+          "package_name": "com.universedeveloper.kesling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66466532810-6vf4hiclie4a33jrcg0i2kkqfrmo37p0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.universedeveloper.kesling",
+            "certificate_hash": "234f6902209f153baf6a906d95b404a3dd6bda63"
+          }
+        },
+        {
+          "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxr-cpfeQ31O9WrFJBvnm1cddYVFLU8wM"
+        },
+        {
+          "current_key": "AIzaSyBIUgk1fDy3ICL6nCtLjBzsUARzAlGZSQ4"
+        },
+        {
+          "current_key": "AIzaSyDlxgHBTXh6Mp9YLn0wC64M1izSWv-1hxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66466532810:android:303e75d9ca0492b5",
+        "android_client_info": {
+          "package_name": "com.universedeveloper.pustaka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66466532810-ni75e16ajl6v7ae1auv05o1r2u0op9en.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.universedeveloper.pustaka",
+            "certificate_hash": "f57a756d1cca225f1564b7333e24f44ddadbf575"
+          }
+        },
+        {
+          "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxr-cpfeQ31O9WrFJBvnm1cddYVFLU8wM"
+        },
+        {
+          "current_key": "AIzaSyBIUgk1fDy3ICL6nCtLjBzsUARzAlGZSQ4"
+        },
+        {
+          "current_key": "AIzaSyDlxgHBTXh6Mp9YLn0wC64M1izSWv-1hxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66466532810:android:8627cf95af11d56d",
+        "android_client_info": {
+          "package_name": "com.universedeveloper.welcomedinaskesehatan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66466532810-j5obq7k8sivjm3dut8ee1ddt2vk25csi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.universedeveloper.welcomedinaskesehatan",
+            "certificate_hash": "234f6902209f153baf6a906d95b404a3dd6bda63"
+          }
+        },
+        {
+          "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxr-cpfeQ31O9WrFJBvnm1cddYVFLU8wM"
+        },
+        {
+          "current_key": "AIzaSyBIUgk1fDy3ICL6nCtLjBzsUARzAlGZSQ4"
+        },
+        {
+          "current_key": "AIzaSyDlxgHBTXh6Mp9YLn0wC64M1izSWv-1hxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66466532810:android:0f2842b9895b413541d333",
+        "android_client_info": {
+          "package_name": "id.dinkes.semarangkota.go.akm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66466532810-rkqr0epsrfapfqh2s6s1hm3ameu272ld.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.dinkes.semarangkota.go.akm",
+            "certificate_hash": "bf45fc7afd846bd69642281903cfb0c7cc6aa0dc"
+          }
+        },
+        {
+          "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxr-cpfeQ31O9WrFJBvnm1cddYVFLU8wM"
+        },
+        {
+          "current_key": "AIzaSyBIUgk1fDy3ICL6nCtLjBzsUARzAlGZSQ4"
+        },
+        {
+          "current_key": "AIzaSyDlxgHBTXh6Mp9YLn0wC64M1izSWv-1hxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66466532810:android:2a92fac644ad49bc",
+        "android_client_info": {
+          "package_name": "id.dinkes.semarangkota.go.kesehatanremaja"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66466532810-vcehgu3g7d12kspqv8co7slmi8c34485.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.dinkes.semarangkota.go.kesehatanremaja",
+            "certificate_hash": "234f6902209f153baf6a906d95b404a3dd6bda63"
+          }
+        },
+        {
+          "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxr-cpfeQ31O9WrFJBvnm1cddYVFLU8wM"
+        },
+        {
+          "current_key": "AIzaSyBIUgk1fDy3ICL6nCtLjBzsUARzAlGZSQ4"
+        },
+        {
+          "current_key": "AIzaSyDlxgHBTXh6Mp9YLn0wC64M1izSWv-1hxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66466532810:android:6ece4688b8cbd2e441d333",
+        "android_client_info": {
+          "package_name": "id.dinkes.semarangkota.go.mobileedispo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66466532810-28a7a0p6k7abp3gksco6cjo943tcufbr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.dinkes.semarangkota.go.mobileedispo",
+            "certificate_hash": "bf45fc7afd846bd69642281903cfb0c7cc6aa0dc"
+          }
+        },
+        {
+          "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxr-cpfeQ31O9WrFJBvnm1cddYVFLU8wM"
+        },
+        {
+          "current_key": "AIzaSyBIUgk1fDy3ICL6nCtLjBzsUARzAlGZSQ4"
+        },
+        {
+          "current_key": "AIzaSyDlxgHBTXh6Mp9YLn0wC64M1izSWv-1hxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66466532810:android:5db371fe1416f53441d333",
+        "android_client_info": {
+          "package_name": "id.go.dkksemarang.bidikcovid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66466532810-fuag3n88veu7a4p8pfaueu3u78jemq1q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.go.dkksemarang.bidikcovid",
+            "certificate_hash": "8a940320ddca35e40a4a26ac9da90313609062eb"
+          }
+        },
+        {
+          "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxr-cpfeQ31O9WrFJBvnm1cddYVFLU8wM"
+        },
+        {
+          "current_key": "AIzaSyBIUgk1fDy3ICL6nCtLjBzsUARzAlGZSQ4"
+        },
+        {
+          "current_key": "AIzaSyDlxgHBTXh6Mp9YLn0wC64M1izSWv-1hxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66466532810-30nlp3gmvs809j6ha172ppip33bjiirb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

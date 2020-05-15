@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     compileSdkVersion 29
@@ -52,6 +54,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.libraries.places:places:2.2.0'
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation 'com.squareup.okhttp3:okhttp:4.6.0'
@@ -68,4 +71,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
+
+    implementation 'com.google.firebase:firebase-analytics-ktx:17.4.1'
+    implementation 'com.google.firebase:firebase-crashlytics:17.0.0'
+
+    //Firebase
+
 }

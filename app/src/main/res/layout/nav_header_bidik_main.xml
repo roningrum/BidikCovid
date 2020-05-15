@@ -22,6 +22,7 @@
         app:srcCompat="@drawable/ic_social_media" />
 
     <TextView
+        android:id="@+id/tv_header_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
