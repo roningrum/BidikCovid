@@ -33,6 +33,22 @@ interface ApiService {
         @Query("flag") flag: String
     ): Single<InfoCovidResponse>
 
+
+    @GET("pasien")
+    fun pasienCovid(
+        @Header("x-username") username: String,
+        @Query("token") token: String,
+        @Query("status") nama: String
+    ): Call<InfoCovidResponse>
+
+    //buat search Pasien
+    @GET("pasien")
+    fun searchPasienCovid(
+        @Header("x-username") username: String,
+        @Query("token") token: String,
+        @Query("nama") nama: String
+    ): Single<InfoCovidResponse>
+
     @POST("tambahLokasiPasien")
     @FormUrlEncoded
     fun tambahLokasiPasien(
