@@ -102,10 +102,10 @@ class PasienSudahSurveiLokasi : Fragment() {
                         "ODP Negatif" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "11")
                         }
-                        "PDP Meninggal Tunggu Hasil " -> {
+                        "PDP Meninggal Tunggu Hasil" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "71")
                         }
-                        "PDP Meninggal Tidak Tunggu Hasil " -> {
+                        "PDP Meninggal Tidak Tunggu Hasil" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "72")
                         }
                         "Orang Tanpa Gejala" -> {
@@ -179,26 +179,5 @@ class PasienSudahSurveiLokasi : Fragment() {
 
         })
     }
-
-//    private fun showPasienList(infoPasien: List<InfoCovid>) {
-//        val adapter = PasienLokasiAdapter(infoPasien, this.context)
-//        rv_pasien_sudah_lokasi.adapter = adapter
-//        adapter.notifyDataSetChanged()
-//        adapter.setOnItemClickCallback(object : OnItemClickCallback {
-//            override fun onItemClicked(infoCovid: InfoCovid) {
-//                val intent = Intent(activity, EditPasienActivity::class.java)
-//                intent.putExtra(EditPasienActivity.NAMA, infoCovid.nama)
-//                intent.putExtra(EditPasienActivity.STATUS, infoCovid.status)
-//                intent.putExtra(EditPasienActivity.ALAMAT, infoCovid.alamat)
-//                intent.putExtra(EditPasienActivity.ID_PASIEN, infoCovid.pasien_id)
-//                intent.putExtra(EditPasienActivity.UMUR, infoCovid.umur)
-//                intent.putExtra(EditPasienActivity.JK, infoCovid.jk)
-//                intent.putExtra(EditPasienActivity.LATITUDE, infoCovid.lat)
-//                intent.putExtra(EditPasienActivity.LONGITUDE, infoCovid.lng)
-//                startActivity(intent)
-//            }
-//
-//        })
-//    }
 
 }

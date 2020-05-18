@@ -99,10 +99,10 @@ class PasienBelumSurveiLokasi : Fragment() {
                         "ODP Negatif" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "11")
                         }
-                        "PDP Meninggal Tunggu Hasil " -> {
+                        "PDP Meninggal Tunggu Hasil" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "71")
                         }
-                        "PDP Meninggal Tidak Tunggu Hasil " -> {
+                        "PDP Meninggal Tidak Tunggu Hasil" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "72")
                         }
                         "Orang Tanpa Gejala" -> {

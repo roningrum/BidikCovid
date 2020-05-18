@@ -19,8 +19,9 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="200dp"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/bg_spinner"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"

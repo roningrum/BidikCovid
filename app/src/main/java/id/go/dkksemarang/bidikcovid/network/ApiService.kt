@@ -16,14 +16,6 @@ interface ApiService {
         @Header("x-password") password: String
     ): Call<LoginResponse>
 
-
-    @GET("pasien")
-    fun pasienCovid(
-        @Header("x-username") username: String,
-        @Query("token") token: String,
-        @Query("nama") nama: String
-    ): Call<InfoCovidResponse>
-
     //Buat Dapat Data Survei apa Belum
     @GET("pasien")
     fun infoPasienCovid(
@@ -40,21 +32,6 @@ interface ApiService {
         @Query("status") status: Int,
         @Query("flag") flag: String
     ): Single<InfoCovidResponse>
-
-    @GET("pasien")
-    fun daftarPasien(
-        @Header("x-username") username: String,
-        @Query("token") token: String,
-        @Query("status") status: Int
-    ): Call<InfoCovidResponse>
-
-    @GET("pasien")
-    fun petaPasien(
-        @Header("x-username") username: String,
-        @Query("token") token: String,
-        @Query("status") status: Int,
-        @Query("flag") flag: String
-    ): Call<InfoCovidResponse>
 
     @POST("tambahLokasiPasien")
     @FormUrlEncoded

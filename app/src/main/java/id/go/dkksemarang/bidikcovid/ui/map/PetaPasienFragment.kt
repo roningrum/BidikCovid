@@ -28,7 +28,6 @@ class PetaPasienFragment : Fragment(), OnMapReadyCallback {
     private lateinit var clusterManager: ClusterManager<InfoCovid>
     private lateinit var marker: Marker
 
-    var flag: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,40 +43,11 @@ class PetaPasienFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        pasienViewModel = ViewModelProvider(this).get(PetaPasienViewModel::class.java)
         petaCovidViewModel = ViewModelProvider(this).get(PetaCovidViewModel::class.java)
         val sessionManager = SessionManager(this.requireContext())
         val username = sessionManager.fetchAuthUsername()
         val token = sessionManager.fetchAuthToken()
         petaCovidViewModel.getSeluruhPasienPetaCovid(username, token, 1)
-
-
-//        val filter_pasien = resources.getStringArray(R.array.status)
-//        val adapter_filter_pasien =
-//            ArrayAdapter(view.context, android.R.layout.simple_spinner_item, filter_pasien)
-//        adapter_filter_pasien.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        spinner_filter_data.adapter = adapter_filter_pasien
-
-//        spinner_filter_data.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(
-//                parent: AdapterView<*>?,
-//                view: View?,
-//                position: Int,
-//                id: Long
-//            ) {
-//
-//                if (spinner_filter_data.selectedItem.equals("ODP")) {
-//                    showMarkerBased("1")
-//                } else if (spinner_filter_data.selectedItem.equals("Corona Sembuh")) {
-//                    showMarkerBased("4")
-//                }
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//            }
-//        }
-//
-//        adapter_filter_pasien.notifyDataSetChanged()
 
 
     }
