@@ -11,18 +11,24 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.ClusterManager
 import id.go.dkksemarang.bidikcovid.R
-import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovid
-import id.go.dkksemarang.bidikcovid.ui.home.fragmentpasien.PasienViewModel
+import id.go.dkksemarang.bidikcovid.model.InfoCovid
+import id.go.dkksemarang.bidikcovid.util.ClusterRenderer
 import id.go.dkksemarang.bidikcovid.util.SessionManager
+import id.go.dkksemarang.bidikcovid.viewmodel.PetaCovidViewModel
 
 class PetaPasienFragment : Fragment(), OnMapReadyCallback {
     private lateinit var gMap: GoogleMap
-    private lateinit var pasienViewModel: PasienViewModel
+    private lateinit var petaCovidViewModel: PetaCovidViewModel
     private lateinit var clusterManager: ClusterManager<InfoCovid>
+    private lateinit var marker: Marker
+
+    var flag: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,38 +44,81 @@ class PetaPasienFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pasienViewModel = ViewModelProvider(this).get(PasienViewModel::class.java)
-        val sessionManager = SessionManager(view.context)
+//        pasienViewModel = ViewModelProvider(this).get(PetaPasienViewModel::class.java)
+        petaCovidViewModel = ViewModelProvider(this).get(PetaCovidViewModel::class.java)
+        val sessionManager = SessionManager(this.requireContext())
         val username = sessionManager.fetchAuthUsername()
         val token = sessionManager.fetchAuthToken()
-        pasienViewModel.getInfoCovidPasien(username, token, view.context, 1)
+        petaCovidViewModel.getSeluruhPasienPetaCovid(username, token, 1)
+
+
+//        val filter_pasien = resources.getStringArray(R.array.status)
+//        val adapter_filter_pasien =
+//            ArrayAdapter(view.context, android.R.layout.simple_spinner_item, filter_pasien)
+//        adapter_filter_pasien.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        spinner_filter_data.adapter = adapter_filter_pasien
+
+//        spinner_filter_data.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(
+//                parent: AdapterView<*>?,
+//                view: View?,
+//                position: Int,
+//                id: Long
+//            ) {
+//
+//                if (spinner_filter_data.selectedItem.equals("ODP")) {
+//                    showMarkerBased("1")
+//                } else if (spinner_filter_data.selectedItem.equals("Corona Sembuh")) {
+//                    showMarkerBased("4")
+//                }
+//            }
+//
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//            }
+//        }
+//
+//        adapter_filter_pasien.notifyDataSetChanged()
+
+
     }
+
 
     override fun onMapReady(googleMap: GoogleMap) {
         gMap = googleMap
+        clusterManager = ClusterManager<InfoCovid>(context, gMap)
         val semarang = LatLng(-6.992523, 110.4065905)
-        pasienViewModel.getPasienCovid().observe(viewLifecycleOwner, Observer { infoCovid ->
-            if (infoCovid != null) {
-                showPasienMap(gMap, infoCovid)
+        observeViewModel(gMap)
+        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(semarang, 12.0f))
+        gMap.setOnCameraIdleListener(clusterManager)
+        gMap.setOnMarkerClickListener(clusterManager)
 
-            }
-        })
-        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(semarang, 8f))
+        clusterManager.renderer = ClusterRenderer(context, gMap, clusterManager)
+
 
     }
 
-    private fun showPasienMap(googleMap: GoogleMap, infoCovid: List<InfoCovid>) {
-        clusterManager = ClusterManager(context, gMap)
-        for (i in infoCovid.indices) {
-            val lat = infoCovid[i].lat
-            val lng = infoCovid[i].lng
-            val nama = infoCovid[i].nama
-            val koordinatPasien = LatLng(lat!!, lng!!)
-            googleMap.addMarker(MarkerOptions().position(koordinatPasien).title(nama))
-            googleMap.setOnCameraIdleListener(clusterManager)
-            clusterManager.addItem(infoCovid[i])
-        }
-        clusterManager.cluster()
-
+    private fun observeViewModel(gMap: GoogleMap) {
+        petaCovidViewModel.loadingMarker.observe(viewLifecycleOwner, Observer { isLoading ->
+            isLoading.let {
+                gMap.clear()
+            }
+        })
+        petaCovidViewModel.petapasienCovid.observe(viewLifecycleOwner, Observer { petaCovid ->
+            petaCovid as ArrayList
+            for (i in petaCovid.indices) {
+                val lat = petaCovid[i].lat
+                val lng = petaCovid[i].lng
+                val nama = petaCovid[i].nama
+                val koordinatPasien = LatLng(lat!!, lng!!)
+                marker = gMap.addMarker(
+                    MarkerOptions()
+                        .title(nama)
+                        .position(koordinatPasien)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                )
+                clusterManager.addItem(petaCovid[i])
+            }
+            clusterManager.cluster()
+        })
     }
 }

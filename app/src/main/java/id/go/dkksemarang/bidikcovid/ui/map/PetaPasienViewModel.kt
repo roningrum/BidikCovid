@@ -1,4 +1,4 @@
-package id.go.dkksemarang.bidikcovid.ui.home.fragmentpasien
+package id.go.dkksemarang.bidikcovid.ui.map
 
 import android.content.Context
 import android.util.Log
@@ -13,12 +13,18 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PasienViewModel : ViewModel() {
+class PetaPasienViewModel : ViewModel() {
     private val covidPasienList: MutableLiveData<List<InfoCovid>> = MutableLiveData()
 
-    fun getInfoCovidPasien(username: String, token: String, context: Context, status: Int) {
+    fun getPetaPasien(
+        username: String,
+        token: String,
+        status: Int,
+        flag: String,
+        context: Context
+    ) {
         val infoCovidPasienCall: Call<InfoCovidResponse> =
-            ApiClientService().getRetrofitPasienService().daftarPasien(username, token, status)
+            ApiClientService().getRetrofitPasienService().petaPasien(username, token, status, flag)
         infoCovidPasienCall.enqueue(object : Callback<InfoCovidResponse> {
             override fun onFailure(call: Call<InfoCovidResponse>, t: Throwable) {
                 Log.w("Pesan", "Gagal karena ${t.message}")
@@ -30,6 +36,7 @@ class PasienViewModel : ViewModel() {
             ) {
                 if (response.isSuccessful && response.body()?.status == true) {
                     covidPasienList.value = response.body()?.infocovid
+                    Log.w("Username", "Username $username")
                 } else {
                     Toast.makeText(context, " ${response.body()?.message}", Toast.LENGTH_SHORT)
                         .show()
@@ -39,7 +46,6 @@ class PasienViewModel : ViewModel() {
             }
         })
     }
-
 
     fun getPasienCovid(): LiveData<List<InfoCovid>> {
         return covidPasienList

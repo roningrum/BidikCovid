@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id.go.dkksemarang.bidikcovid.login.model.LoginResponse
-import id.go.dkksemarang.bidikcovid.service.ApiClientService
+import id.go.dkksemarang.bidikcovid.model.LoginResponse
+import id.go.dkksemarang.bidikcovid.network.ApiClientService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

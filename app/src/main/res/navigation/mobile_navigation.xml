@@ -16,12 +16,6 @@
     <fragment
         android:id="@+id/nav_gallery"
         android:name="id.go.dkksemarang.bidikcovid.ui.map.PetaPasienFragment"
-        android:label="@string/menu_gallery"
+        android:label="Peta Pasien"
         tools:layout="@layout/fragment_peta_pasien" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="id.go.dkksemarang.bidikcovid.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
 </navigation>

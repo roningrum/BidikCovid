@@ -16,7 +16,24 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+
+    <string-array name="status">
+        <item>Semua Pasien</item>
+        <item>ODP</item>
+        <item>PDP Tunggu Hasil</item>
+        <item>PDP Lab Negatif</item>
+        <item>Covid</item>
+        <item>Covid Meninggal Positif</item>
+        <item>PDP Meninggal Negatif</item>
+        <item>Corona Sembuh</item>
+        <item>ODP Negatif</item>
+        <item>PDP Meninggal Tunggu Hasil</item>
+        <item>PDP Meninggal Tidak Tunggu Hasil</item>
+        <item>Orang Tanpa Gejala</item>
+        <item>Orang Berisiko</item>
+        <item>PDP Pulang APS</item>
+        <item>OTG Negatif</item>
+    </string-array>
 
     <string name="home_second">Home Second</string>
 </resources>

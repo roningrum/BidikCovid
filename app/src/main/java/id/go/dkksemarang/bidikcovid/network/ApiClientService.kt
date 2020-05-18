@@ -1,4 +1,4 @@
-package id.go.dkksemarang.bidikcovid.service
+package id.go.dkksemarang.bidikcovid.network
 
 import com.google.gson.GsonBuilder
 import id.go.dkksemarang.bidikcovid.BuildConfig

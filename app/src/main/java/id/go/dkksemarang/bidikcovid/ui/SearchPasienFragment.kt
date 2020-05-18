@@ -13,9 +13,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.go.dkksemarang.bidikcovid.EditPasienActivity
 import id.go.dkksemarang.bidikcovid.R
+import id.go.dkksemarang.bidikcovid.model.InfoCovid
 import id.go.dkksemarang.bidikcovid.pasien.adapter.InfoCovidAdapter
 import id.go.dkksemarang.bidikcovid.pasien.adapter.OnItemClickCallback
-import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovid
 import id.go.dkksemarang.bidikcovid.pasien.viewmodel.CovidPasienViewModel
 import id.go.dkksemarang.bidikcovid.ui.SearchPasienActivity.Companion.SEARCH_QUERY
 import id.go.dkksemarang.bidikcovid.util.SessionManager

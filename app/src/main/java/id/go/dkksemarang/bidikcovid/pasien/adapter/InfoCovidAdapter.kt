@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.go.dkksemarang.bidikcovid.R
-import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovid
+import id.go.dkksemarang.bidikcovid.model.InfoCovid
 import kotlinx.android.synthetic.main.item_info_covid_pasien.view.*
 
 class InfoCovidAdapter(val infoCovidList: List<InfoCovid>, var context: Context?) : RecyclerView.Adapter<InfoCovidAdapter.InfoCovidViewHolder>(){

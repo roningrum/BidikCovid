@@ -1,4 +1,4 @@
-package id.go.dkksemarang.bidikcovid.login.model
+package id.go.dkksemarang.bidikcovid.model
 
 import com.google.gson.annotations.SerializedName
 

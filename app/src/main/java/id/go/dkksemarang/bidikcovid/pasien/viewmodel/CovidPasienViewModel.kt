@@ -6,10 +6,10 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovid
-import id.go.dkksemarang.bidikcovid.pasien.model.InfoCovidResponse
+import id.go.dkksemarang.bidikcovid.model.InfoCovid
+import id.go.dkksemarang.bidikcovid.model.InfoCovidResponse
+import id.go.dkksemarang.bidikcovid.network.ApiClientService
 import id.go.dkksemarang.bidikcovid.pasien.model.pasienLokasi
-import id.go.dkksemarang.bidikcovid.service.ApiClientService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
