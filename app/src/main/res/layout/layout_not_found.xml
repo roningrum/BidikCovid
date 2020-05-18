@@ -32,22 +32,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ic_error_search" />
 
-    <!--    <Button-->
-    <!--        android:id="@+id/btn_tambah_data"-->
-    <!--        style="@style/Widget.AppCompat.Button.Borderless"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="56dp"-->
-    <!--        android:layout_marginStart="16dp"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:layout_marginEnd="16dp"-->
-    <!--        android:background="@android:color/transparent"-->
-    <!--        android:padding="8dp"-->
-    <!--        android:text="Hubungi"-->
-    <!--        android:textAllCaps="false"-->
-    <!--        android:textColor="@android:color/holo_orange_dark"-->
-    <!--        android:textSize="16sp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_not_found_search" />-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>
