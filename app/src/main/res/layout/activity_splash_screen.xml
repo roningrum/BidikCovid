@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashScreen">
+    tools:context=".ui.SplashScreen">
 
     <ImageView
         android:id="@+id/img_logo_bidik_covid"
@@ -18,7 +18,6 @@
         app:srcCompat="@drawable/ic_bidik_covid" />
 
     <TextView
-        android:id="@+id/tv_heading_name_app"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

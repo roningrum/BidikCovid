@@ -1,4 +1,4 @@
-package id.go.dkksemarang.bidikcovid.pasien.adapter
+package id.go.dkksemarang.bidikcovid.ui.search
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -23,7 +23,7 @@ class InfoCovidAdapter(val infoCovidList: List<InfoCovid>, var context: Context?
     override fun getItemCount(): Int=
         infoCovidList.size
 
-    override fun onBindViewHolder(holder: InfoCovidAdapter.InfoCovidViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: InfoCovidViewHolder, position: Int) {
         holder.bindCovidPasie(infoCovidList[position])
     }
 

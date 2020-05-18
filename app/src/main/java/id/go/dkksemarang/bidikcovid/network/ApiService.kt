@@ -2,6 +2,7 @@ package id.go.dkksemarang.bidikcovid.network
 
 import id.go.dkksemarang.bidikcovid.model.InfoCovidResponse
 import id.go.dkksemarang.bidikcovid.model.LoginResponse
+import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.http.*
@@ -15,6 +16,13 @@ interface ApiService {
         @Header("x-username") username: String,
         @Header("x-password") password: String
     ): Call<LoginResponse>
+
+
+    @GET("login")
+    fun login(
+        @Header("x-username") username: String,
+        @Header("x-password") password: String
+    ): Observable<LoginResponse>
 
     //Buat Dapat Data Survei apa Belum
     @GET("pasien")

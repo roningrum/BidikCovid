@@ -1,4 +1,4 @@
-package id.go.dkksemarang.bidikcovid
+package id.go.dkksemarang.bidikcovid.ui.edit
 
 import android.app.Activity
 import android.content.Intent
@@ -9,9 +9,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.GooglePlayServicesRepairableException
 import com.google.android.gms.location.places.ui.PlacePicker
-import id.go.dkksemarang.bidikcovid.pasien.model.pasienLokasi
-import id.go.dkksemarang.bidikcovid.pasien.viewmodel.CovidPasienViewModel
+import id.go.dkksemarang.bidikcovid.R
+import id.go.dkksemarang.bidikcovid.model.PasienLokasi
 import id.go.dkksemarang.bidikcovid.util.SessionManager
+import id.go.dkksemarang.bidikcovid.viewmodel.EditPasienViewModel
 import kotlinx.android.synthetic.main.content_edit_pasien.*
 
 class EditPasienActivity : AppCompatActivity() {
@@ -27,7 +28,7 @@ class EditPasienActivity : AppCompatActivity() {
         const val PLACE_PICKER_REQUEST = 1
     }
 
-    private lateinit var covidPasienViewModel: CovidPasienViewModel
+    private lateinit var editPasienViewModel: EditPasienViewModel
 
     var nama: String? = null
     var umur: String? = null
@@ -45,13 +46,14 @@ class EditPasienActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_pasien)
 
-        covidPasienViewModel = ViewModelProviders.of(this).get(CovidPasienViewModel::class.java)
+        editPasienViewModel = ViewModelProviders.of(this).get(EditPasienViewModel::class.java)
         initDataPasien()
         val sessionManager = SessionManager(this)
         token = sessionManager.fetchAuthToken()
         username = sessionManager.fetchAuthUsername()
 
-        covidPasienViewModel.setPasienCovid().observe(this, Observer { pasienLokasi ->
+
+        editPasienViewModel.setPasienCovid().observe(this, Observer { pasienLokasi ->
             if (pasienLokasi.id_pasien != null) {
                 updateDataPasien(pasienLokasi)
             }
@@ -61,7 +63,10 @@ class EditPasienActivity : AppCompatActivity() {
         btn_edit_lokasi_pasien.setOnClickListener {
             val builder = PlacePicker.IntentBuilder()
             try {
-                startActivityForResult(builder.build(this@EditPasienActivity), PLACE_PICKER_REQUEST)
+                startActivityForResult(
+                    builder.build(this@EditPasienActivity),
+                    PLACE_PICKER_REQUEST
+                )
             } catch (e: GooglePlayServicesRepairableException) {
                 e.printStackTrace()
             } catch (e: GooglePlayServicesNotAvailableException) {
@@ -96,7 +101,7 @@ class EditPasienActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateDataPasien(pasienLokasi: pasienLokasi) {
+    private fun updateDataPasien(pasienLokasi: PasienLokasi) {
         pasienLokasi.latitude = lat
         pasienLokasi.longitude = lng
         pasienLokasi.id_pasien = pasien_id
@@ -119,7 +124,7 @@ class EditPasienActivity : AppCompatActivity() {
 
     private fun simpanUpdateLokasiPasien(lat: Double?, lng: Double?) {
         btn_update_pasien.setOnClickListener {
-            covidPasienViewModel.updateLokasiPasien(
+            editPasienViewModel.updateLokasiPasien(
                 username!!,
                 token!!,
                 pasien_id!!,

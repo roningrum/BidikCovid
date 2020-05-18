@@ -13,9 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import id.go.dkksemarang.bidikcovid.EditPasienActivity
 import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.model.InfoCovid
+import id.go.dkksemarang.bidikcovid.ui.edit.EditPasienActivity
 import id.go.dkksemarang.bidikcovid.util.SessionManager
 import id.go.dkksemarang.bidikcovid.viewmodel.InfoCovidViewModel
 import kotlinx.android.synthetic.main.content_layout_pasien_sudah_survei.*

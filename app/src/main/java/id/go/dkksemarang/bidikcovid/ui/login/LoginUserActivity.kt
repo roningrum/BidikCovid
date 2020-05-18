@@ -1,19 +1,18 @@
-package id.go.dkksemarang.bidikcovid.login
+package id.go.dkksemarang.bidikcovid.ui.login
 
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import id.go.dkksemarang.bidikcovid.BidikMainActivity
 import id.go.dkksemarang.bidikcovid.R
-import id.go.dkksemarang.bidikcovid.login.viewmodel.LoginViewModel
+import id.go.dkksemarang.bidikcovid.ui.home.BidikMainActivity
 import id.go.dkksemarang.bidikcovid.util.SessionManager
+import id.go.dkksemarang.bidikcovid.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login_user.*
 
 class LoginUserActivity : AppCompatActivity() {
@@ -25,22 +24,14 @@ class LoginUserActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login_user)
         sessionManager = SessionManager(applicationContext)
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        loginViewModel.getLogin().observe(this, Observer { login ->
-            if (login != null) {
-                sessionManager.saveAuthToken(login.token)
-                Log.d("TokenLogin", "Your Token : ${login.token}")
 
-            }
-        })
-
+        observeViewModel()
         val username = edt_username.text
         val password = edt_password.text
 
         btn_login_user.setOnClickListener {
-            btn_login_user.isEnabled = false
-            btn_login_user.text = "Loading..."
-
-
+//            btn_login_user.isEnabled = false
+//            btn_login_user.text = "Loading..."
             if (TextUtils.isEmpty(username)) {
                 Toast.makeText(
                     applicationContext,
@@ -60,13 +51,9 @@ class LoginUserActivity : AppCompatActivity() {
                     btn_login_user.isEnabled = true
                     btn_login_user.text = "Login"
                 } else {
-                    loginViewModel.getLoginUserResponse(username.toString(), password.toString())
+                    btn_login_user.isEnabled = true
+                    loginViewModel.loginUser(username.toString(), password.toString(), this)
                     sessionManager.saveAuthUsername(username.toString())
-                    val intent = Intent(this, BidikMainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                    Toast.makeText(applicationContext, "Berhasil Masuk", Toast.LENGTH_SHORT)
-                        .show()
                     Log.d("Username", "Your Username : ${sessionManager.fetchAuthUsername()}")
                 }
             }
@@ -74,12 +61,45 @@ class LoginUserActivity : AppCompatActivity() {
         }
     }
 
-    private fun isEmpty(etText: EditText): Boolean {
-        if (etText.text.toString().trim().length > 0) {
-            return false
-        }
-        return true
+    private fun observeViewModel() {
+        loginViewModel.loadError.observe(this, Observer { isError ->
+            isError.let {
+                if (it) {
+                    Toast.makeText(
+                        this,
+                        "Gagal Login. Silakan cek koneksi Internet Anda",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        })
+        loginViewModel.loading.observe(this, Observer {
+            if (it) {
+                btn_login_user.text = "Loading..."
+            }
+        })
+        loginViewModel.loadZero.observe(this, Observer {
+            if (it) {
+                Toast.makeText(
+                    this,
+                    "Username dan password salah. Silahkan cek kembali",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+
+        loginViewModel.loginResponses.observe(this, Observer {
+            it.let {
+                sessionManager.saveAuthToken(it.token)
+                Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, BidikMainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+
+        })
     }
+
     override fun getResources(): Resources {
         return super.getResources().apply {
             configuration.fontScale = 1F

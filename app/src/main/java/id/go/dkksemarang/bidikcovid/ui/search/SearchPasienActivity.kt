@@ -1,4 +1,4 @@
-package id.go.dkksemarang.bidikcovid.ui
+package id.go.dkksemarang.bidikcovid.ui.search
 
 import android.app.SearchManager
 import android.content.Context
@@ -18,7 +18,8 @@ class SearchPasienActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_pasien)
         title = ""
-        val searchListFragment= SearchPasienFragment()
+        val searchListFragment =
+            SearchPasienFragment()
         val fragmentManager = supportFragmentManager
         val fragmentTransition = fragmentManager.beginTransaction()
         fragmentTransition.replace(R.id.contain_searh_pasien, searchListFragment)
@@ -39,7 +40,8 @@ class SearchPasienActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String): Boolean {
                 val data = Bundle()
                 data.putString(SEARCH_QUERY, query)
-                val fragment = SearchPasienFragment()
+                val fragment =
+                    SearchPasienFragment()
                 fragment.arguments = data
                 supportFragmentManager.beginTransaction().replace(R.id.contain_searh_pasien, fragment).commit()
                 Log.d("Query", "Key$SEARCH_QUERY query Key $query")

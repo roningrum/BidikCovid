@@ -1,10 +1,11 @@
-package id.go.dkksemarang.bidikcovid
+package id.go.dkksemarang.bidikcovid.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import id.go.dkksemarang.bidikcovid.login.LoginUserActivity
+import id.go.dkksemarang.bidikcovid.R
+import id.go.dkksemarang.bidikcovid.ui.login.LoginUserActivity
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +20,11 @@ class SplashScreen : AppCompatActivity() {
             val intent = Intent(this, LoginUserActivity::class.java)
             startActivity(intent)
             finish()
-        }, 5000)
-        overridePendingTransition(R.anim.splash_in_animation, R.anim.splash_out_animation)
+        }, 800)
+        overridePendingTransition(
+            R.anim.splash_in_animation,
+            R.anim.splash_out_animation
+        )
 
     }
 

@@ -1,4 +1,4 @@
-package id.go.dkksemarang.bidikcovid
+package id.go.dkksemarang.bidikcovid.ui.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,8 +14,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
-import id.go.dkksemarang.bidikcovid.login.LoginUserActivity
-import id.go.dkksemarang.bidikcovid.ui.SearchPasienActivity
+import id.go.dkksemarang.bidikcovid.R
+import id.go.dkksemarang.bidikcovid.ui.login.LoginUserActivity
+import id.go.dkksemarang.bidikcovid.ui.search.SearchPasienActivity
 import id.go.dkksemarang.bidikcovid.util.SessionManager
 
 class BidikMainActivity : AppCompatActivity() {
@@ -35,7 +36,9 @@ class BidikMainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_home,
+                R.id.nav_gallery,
+                R.id.nav_slideshow
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

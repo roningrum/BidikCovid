@@ -7,7 +7,6 @@
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/tv_heading_detail_nama_pasien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
@@ -28,7 +27,6 @@
         tools:text="Pasien" />
 
     <TextView
-        android:id="@+id/tv_heading_detail_status_pasien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
@@ -49,7 +47,6 @@
         tools:text="ODP" />
 
     <TextView
-        android:id="@+id/tv_heading_detail_id_pasien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
@@ -70,7 +67,6 @@
         tools:text="0123" />
 
     <TextView
-        android:id="@+id/tv_heading_detail_jenis_kelamin_pasien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
@@ -91,7 +87,6 @@
         tools:text="Laki-laki" />
 
     <TextView
-        android:id="@+id/tv_heading_detail_alamat_pasien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"
@@ -112,7 +107,6 @@
         tools:text="Jalan Mangga Dua" />
 
     <TextView
-        android:id="@+id/tv_heading_detail_lokasi_pasien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="7dp"

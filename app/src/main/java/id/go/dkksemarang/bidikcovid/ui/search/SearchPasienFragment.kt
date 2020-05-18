@@ -1,4 +1,4 @@
-package id.go.dkksemarang.bidikcovid.ui
+package id.go.dkksemarang.bidikcovid.ui.search
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,12 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import id.go.dkksemarang.bidikcovid.EditPasienActivity
 import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.model.InfoCovid
-import id.go.dkksemarang.bidikcovid.pasien.adapter.InfoCovidAdapter
-import id.go.dkksemarang.bidikcovid.pasien.adapter.OnItemClickCallback
-import id.go.dkksemarang.bidikcovid.ui.SearchPasienActivity.Companion.SEARCH_QUERY
+import id.go.dkksemarang.bidikcovid.ui.edit.EditPasienActivity
+import id.go.dkksemarang.bidikcovid.ui.search.SearchPasienActivity.Companion.SEARCH_QUERY
 import id.go.dkksemarang.bidikcovid.util.SessionManager
 import id.go.dkksemarang.bidikcovid.viewmodel.SearchPasienViewModel
 import kotlinx.android.synthetic.main.fragment_search_pasien.*
@@ -95,10 +93,15 @@ class SearchPasienFragment : Fragment() {
         searchCovidViewModel.pasienInfoCovidResult.observe(
             viewLifecycleOwner,
             Observer { infoCovid ->
-                val adapter = InfoCovidAdapter(infoCovid, this.context)
+                val adapter =
+                    InfoCovidAdapter(
+                        infoCovid,
+                        this.context
+                    )
                 rv_pasien_covid_List.adapter = adapter
                 adapter.notifyDataSetChanged()
-                adapter.setOnItemClickCallback(object : OnItemClickCallback {
+                adapter.setOnItemClickCallback(object :
+                    OnItemClickCallback {
                     override fun onItemClicked(infoCovid: InfoCovid) {
                         val intent = Intent(activity, EditPasienActivity::class.java)
                         intent.putExtra(EditPasienActivity.NAMA, infoCovid.nama)

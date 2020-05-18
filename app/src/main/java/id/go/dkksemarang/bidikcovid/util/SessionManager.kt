@@ -35,27 +35,6 @@ class SessionManager(context: Context){
     fun fetchAuthToken(): String{
         return prefs.getString(USER_TOKEN, "")!!
     }
-
-    fun saveLokasiLat(lat: Double){
-        val editor = prefs.edit()
-        editor.putFloat(LOKASI_USER, lat.toFloat())
-        editor.apply()
-    }
-
-    fun fetchLokasiLat(): Double{
-        return prefs.getFloat(LOKASI_USER, 0.0F).toDouble()
-    }
-
-    fun saveLokasiLng(lng: Double){
-        val editor = prefs.edit()
-        editor.putFloat(LOKASI_USER, lng.toFloat())
-        editor.apply()
-    }
-
-    fun fetchLokasiLng(): Double{
-        return prefs.getFloat(LOKASI_USER, 0.0F).toDouble()
-    }
-
     fun logout(username: String) {
         val editor = prefs.edit()
         editor.remove(username)

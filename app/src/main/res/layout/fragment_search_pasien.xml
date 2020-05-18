@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.SearchPasienFragment">
+    tools:context=".ui.search.SearchPasienFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_pasien_covid_List"

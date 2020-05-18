@@ -17,6 +17,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "URL_COVID", "\"http://119.2.50.170:9095/infocovid/index.php/services/\""
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
