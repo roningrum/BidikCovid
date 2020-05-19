@@ -20,30 +20,6 @@ class PetaCovidViewModel : ViewModel() {
     val loadingMarker = MutableLiveData<Boolean>()
     val handler = Handler(Looper.myLooper()!!)
 
-    fun getPasienPetaCovid(username: String, token: String, status: Int, flag: String) {
-        loadingMarker.value = true
-        disposable.add(
-            ServiceFactory.getApiService().petaPasienCovid(username, token, status, flag)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<InfoCovidResponse>() {
-                    override fun onSuccess(infoCovidResponse: InfoCovidResponse) {
-                        if (infoCovidResponse.status) {
-                            petapasienCovid.value = infoCovidResponse.infocovid
-                            loadingMarker.value = false
-                        } else {
-                            loadingMarker.value = true
-                        }
-                    }
-
-                    override fun onError(e: Throwable) {
-                        loadingMarker.value = true
-                    }
-
-                })
-        )
-    }
-
     fun getSeluruhPasienPetaCovid(username: String, token: String, status: Int) {
         loadingMarker.value = true
         disposable.add(

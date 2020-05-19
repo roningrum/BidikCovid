@@ -1,9 +1,7 @@
 package id.go.dkksemarang.bidikcovid.model
 
 import android.os.Parcelable
-import com.google.android.gms.maps.model.LatLng
 import com.google.gson.annotations.SerializedName
-import com.google.maps.android.clustering.ClusterItem
 import kotlinx.android.parcel.Parcelize
 
 //kelas info covid model
@@ -31,16 +29,4 @@ data class InfoCovid(
     var lat: Double? = null,
     @SerializedName("longitude")
     var lng: Double? = null
-) : Parcelable, ClusterItem {
-    override fun getSnippet(): String {
-        return status!!
-    }
-
-    override fun getTitle(): String {
-        return nama!!
-    }
-
-    override fun getPosition(): LatLng {
-        return LatLng(lat!!, lng!!)
-    }
-}
+) : Parcelable
