@@ -24,8 +24,6 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_spinner"
         android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -52,5 +50,18 @@
             android:layout_gravity="center"
             android:src="@drawable/arrow" />
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_jumlah_data_pasien"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Jumlah :"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

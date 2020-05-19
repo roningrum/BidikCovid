@@ -151,6 +151,9 @@ class PasienSudahSurveiLokasi : Fragment() {
         viewModel.loadZero.observe(viewLifecycleOwner, Observer { isNull ->
             isNull.let {
                 if (it) {
+                    pb_loading.visibility = View.INVISIBLE
+                    swipe_sudah_survei.isRefreshing = false
+                    tv_jumlah_data_pasien_sudah.text = "Jumlah : 0 orang"
                     Toast.makeText(context, "Data Tidak Ditemukan", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(context, "Data Ditemukan", Toast.LENGTH_SHORT).show()
@@ -158,6 +161,9 @@ class PasienSudahSurveiLokasi : Fragment() {
             }
         })
         viewModel.pasienInfoCovid.observe(viewLifecycleOwner, Observer { infoCovid ->
+            if (infoCovid.size != null) {
+                tv_jumlah_data_pasien_sudah.text = "Jumlah : ${infoCovid.size} orang"
+            }
             val adapter = PasienLokasiAdapter(infoCovid, this.context)
             rv_pasien_sudah_lokasi.adapter = adapter
             adapter.notifyDataSetChanged()
