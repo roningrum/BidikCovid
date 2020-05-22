@@ -154,6 +154,7 @@ class PasienBelumSurveiLokasi : Fragment() {
                     swipe.isRefreshing = false
                     pb_loading_belum_survei.visibility = View.GONE
                     tv_jumlah_data_pasien.text = "Jumlah : 0 orang"
+                    hideData()
                     Toast.makeText(context, "Data Tidak Ditemukan", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(context, "Data Ditemukan", Toast.LENGTH_SHORT).show()
@@ -184,5 +185,10 @@ class PasienBelumSurveiLokasi : Fragment() {
         })
     }
 
+
+    fun hideData() {
+        rv_pasien_belum_lokasi.visibility = View.GONE
+        layout_empty_data.visibility = View.VISIBLE
+    }
 
 }

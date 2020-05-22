@@ -3,6 +3,7 @@ package id.go.dkksemarang.bidikcovid.ui.edit
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -53,6 +54,15 @@ class EditPasienActivity : AppCompatActivity() {
         username = sessionManager.fetchAuthUsername()
 
 
+        nama = intent.getStringExtra(NAMA)
+        status = intent.getStringExtra(STATUS)
+        jk = intent.getStringExtra(JK)
+        alamat = intent.getStringExtra(ALAMAT)
+        umur = intent.getStringExtra(UMUR)
+        lat = intent.getDoubleExtra(LATITUDE, 0.0)
+        lng = intent.getDoubleExtra(LONGITUDE, 0.0)
+        pasien_id = intent.getStringExtra(ID_PASIEN)
+
         editPasienViewModel.setPasienCovid().observe(this, Observer { pasienLokasi ->
             if (pasienLokasi.id_pasien != null) {
                 updateDataPasien(pasienLokasi)
@@ -63,6 +73,13 @@ class EditPasienActivity : AppCompatActivity() {
         btn_edit_lokasi_pasien.setOnClickListener {
             val builder = PlacePicker.IntentBuilder()
             try {
+                if (lat != 0.0 && lng != 0.0) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Silakan Sesuaikan dengan lokasi kasus",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
                 startActivityForResult(
                     builder.build(this@EditPasienActivity),
                     PLACE_PICKER_REQUEST
@@ -76,15 +93,6 @@ class EditPasienActivity : AppCompatActivity() {
     }
 
     private fun initDataPasien() {
-        nama = intent.getStringExtra(NAMA)
-        status = intent.getStringExtra(STATUS)
-        jk = intent.getStringExtra(JK)
-        alamat = intent.getStringExtra(ALAMAT)
-        umur = intent.getStringExtra(UMUR)
-        lat = intent.getDoubleExtra(LATITUDE, 0.0)
-        lng = intent.getDoubleExtra(LONGITUDE, 0.0)
-        pasien_id = intent.getStringExtra(ID_PASIEN)
-
         tv_detail_nama_pasien.text = nama
         tv_detail_alamat_pasien.text = alamat
         tv_detail_id_pasien.text = pasien_id
@@ -115,7 +123,6 @@ class EditPasienActivity : AppCompatActivity() {
                 lat = place.latLng.latitude
                 lng = place.latLng.longitude
                 val result = "$lat,$lng"
-
                 tv_detail_lokasi_pasien.text = result
                 simpanUpdateLokasiPasien(lat, lng)
             }
