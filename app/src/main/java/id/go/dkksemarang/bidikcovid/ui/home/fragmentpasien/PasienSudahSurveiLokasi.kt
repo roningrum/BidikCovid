@@ -157,6 +157,7 @@ class PasienSudahSurveiLokasi : Fragment() {
                     hideData()
                     Toast.makeText(context, "Data Tidak Ditemukan", Toast.LENGTH_SHORT).show()
                 } else {
+                    showData()
                     Toast.makeText(context, "Data Ditemukan", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -190,6 +191,11 @@ class PasienSudahSurveiLokasi : Fragment() {
     fun hideData() {
         rv_pasien_sudah_lokasi.visibility = View.GONE
         layout_empty_data_sudah.visibility = View.VISIBLE
+    }
+
+    fun showData() {
+        rv_pasien_sudah_lokasi.visibility = View.VISIBLE
+        layout_empty_data_sudah.visibility = View.GONE
     }
 
 }

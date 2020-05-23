@@ -3,7 +3,6 @@ package id.go.dkksemarang.bidikcovid.ui.edit
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -53,7 +52,17 @@ class EditPasienActivity : AppCompatActivity() {
         token = sessionManager.fetchAuthToken()
         username = sessionManager.fetchAuthUsername()
 
+        editPasienViewModel.setPasienCovid().observe(this, Observer { pasienLokasi ->
+            if (pasienLokasi.id_pasien != null) {
+                updateDataPasien(pasienLokasi)
+            }
 
+        })
+
+
+    }
+
+    private fun initDataPasien() {
         nama = intent.getStringExtra(NAMA)
         status = intent.getStringExtra(STATUS)
         jk = intent.getStringExtra(JK)
@@ -62,41 +71,11 @@ class EditPasienActivity : AppCompatActivity() {
         lat = intent.getDoubleExtra(LATITUDE, 0.0)
         lng = intent.getDoubleExtra(LONGITUDE, 0.0)
         pasien_id = intent.getStringExtra(ID_PASIEN)
-
-        editPasienViewModel.setPasienCovid().observe(this, Observer { pasienLokasi ->
-            if (pasienLokasi.id_pasien != null) {
-                updateDataPasien(pasienLokasi)
-            }
-
-        })
-
-        btn_edit_lokasi_pasien.setOnClickListener {
-            val builder = PlacePicker.IntentBuilder()
-            try {
-                if (lat != 0.0 && lng != 0.0) {
-                    Toast.makeText(
-                        applicationContext,
-                        "Silakan Sesuaikan dengan lokasi kasus",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                startActivityForResult(
-                    builder.build(this@EditPasienActivity),
-                    PLACE_PICKER_REQUEST
-                )
-            } catch (e: GooglePlayServicesRepairableException) {
-                e.printStackTrace()
-            } catch (e: GooglePlayServicesNotAvailableException) {
-                e.printStackTrace()
-            }
-        }
-    }
-
-    private fun initDataPasien() {
         tv_detail_nama_pasien.text = nama
         tv_detail_alamat_pasien.text = alamat
         tv_detail_id_pasien.text = pasien_id
         tv_detail_status_pasien.text = status
+
         if (jk == "L") {
             tv_detail_jenis_kelamin_pasien.text = "Laki-laki"
         } else {
@@ -106,6 +85,20 @@ class EditPasienActivity : AppCompatActivity() {
             tv_detail_lokasi_pasien.text = "null, null"
         } else {
             tv_detail_lokasi_pasien.text = "$lat, $lng"
+        }
+
+        btn_edit_lokasi_pasien.setOnClickListener {
+            val builder = PlacePicker.IntentBuilder()
+            try {
+                startActivityForResult(
+                    builder.build(this@EditPasienActivity),
+                    PLACE_PICKER_REQUEST
+                )
+            } catch (e: GooglePlayServicesRepairableException) {
+                e.printStackTrace()
+            } catch (e: GooglePlayServicesNotAvailableException) {
+                e.printStackTrace()
+            }
         }
     }
 
