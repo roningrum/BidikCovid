@@ -78,47 +78,35 @@ class PasienSudahSurveiLokasi : Fragment() {
                         "Semua Pasien" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "")
                         }
-                        "ODP" -> {
+                        "kontak erat" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "1")
                         }
-                        "PDP Tunggu Hasil" -> {
+                        "pelaku perjalanan" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "2")
                         }
-                        "PDP Lab Negatif" -> {
+                        "discarded" -> {
+                            viewModel.getPasienInfoCovidFilter(username, token, 1, "3")
+                        }
+                        "suspek" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "4")
                         }
-                        "Covid" -> {
+                        "konfirmasi" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "5")
                         }
-                        "Covid Meninggal Positif" -> {
+                        "probable" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "6")
                         }
-                        "PDP Meninggal Negatif" -> {
+                        "meninggal terkonfirmasi" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "7")
                         }
-                        "Corona Sembuh" -> {
+                        "selesai isolasi" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "8")
                         }
-                        "ODP Negatif" -> {
-                            viewModel.getPasienInfoCovidFilter(username, token, 1, "11")
-                        }
-                        "PDP Meninggal Tunggu Hasil" -> {
+                        "meninggal probable" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "71")
                         }
-                        "PDP Meninggal Tidak Tunggu Hasil" -> {
+                        "meninggal negatif" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 1, "72")
-                        }
-                        "Orang Tanpa Gejala" -> {
-                            viewModel.getPasienInfoCovidFilter(username, token, 1, "99")
-                        }
-                        "Orang Berisiko" -> {
-                            viewModel.getPasienInfoCovidFilter(username, token, 1, "100")
-                        }
-                        "PDP Pulang APS" -> {
-                            viewModel.getPasienInfoCovidFilter(username, token, 1, "101")
-                        }
-                        "OTG Negatif" -> {
-                            viewModel.getPasienInfoCovidFilter(username, token, 1, "991")
                         }
                     }
                 }
@@ -151,11 +139,9 @@ class PasienSudahSurveiLokasi : Fragment() {
         viewModel.loadZero.observe(viewLifecycleOwner, Observer { isNull ->
             isNull.let {
                 if (it) {
-                    pb_loading.visibility = View.INVISIBLE
-                    swipe_sudah_survei.isRefreshing = false
                     tv_jumlah_data_pasien_sudah.text = "Jumlah : 0 orang"
-                    hideData()
                     Toast.makeText(context, "Data Tidak Ditemukan", Toast.LENGTH_SHORT).show()
+                    hideData()
                 } else {
                     showData()
                     Toast.makeText(context, "Data Ditemukan", Toast.LENGTH_SHORT).show()
@@ -189,6 +175,8 @@ class PasienSudahSurveiLokasi : Fragment() {
     }
 
     fun hideData() {
+        pb_loading.visibility = View.INVISIBLE
+        swipe_sudah_survei.isRefreshing = false
         rv_pasien_sudah_lokasi.visibility = View.GONE
         layout_empty_data_sudah.visibility = View.VISIBLE
     }

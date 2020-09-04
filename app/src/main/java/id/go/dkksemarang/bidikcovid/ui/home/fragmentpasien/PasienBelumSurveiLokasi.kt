@@ -75,47 +75,35 @@ class PasienBelumSurveiLokasi : Fragment() {
                         "Semua Pasien" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "")
                         }
-                        "ODP" -> {
+                        "kontak erat" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "1")
                         }
-                        "PDP Tunggu Hasil" -> {
+                        "pelaku perjalanan" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "2")
                         }
-                        "PDP Lab Negatif" -> {
+                        "discarded" -> {
+                            viewModel.getPasienInfoCovidFilter(username, token, 2, "3")
+                        }
+                        "suspek" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "4")
                         }
-                        "Covid" -> {
+                        "konfirmasi" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "5")
                         }
-                        "Covid Meninggal Positif" -> {
+                        "probable" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "6")
                         }
-                        "PDP Meninggal Negatif" -> {
+                        "meninggal terkonfirmasi" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "7")
                         }
-                        "Corona Sembuh" -> {
+                        "selesai isolasi" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "8")
                         }
-                        "ODP Negatif" -> {
-                            viewModel.getPasienInfoCovidFilter(username, token, 2, "11")
-                        }
-                        "PDP Meninggal Tunggu Hasil" -> {
+                        "meninggal probable" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "71")
                         }
-                        "PDP Meninggal Tidak Tunggu Hasil" -> {
+                        "meninggal negatif" -> {
                             viewModel.getPasienInfoCovidFilter(username, token, 2, "72")
-                        }
-                        "Orang Tanpa Gejala" -> {
-                            viewModel.getPasienInfoCovidFilter(username, token, 2, "99")
-                        }
-                        "Orang Berisiko" -> {
-                            viewModel.getPasienInfoCovidFilter(username, token, 2, "100")
-                        }
-                        "PDP Pulang APS" -> {
-                            viewModel.getPasienInfoCovidFilter(username, token, 2, "101")
-                        }
-                        "OTG Negatif" -> {
-                            viewModel.getPasienInfoCovidFilter(username, token, 2, "991")
                         }
                     }
                 }
