@@ -67,4 +67,13 @@ interface ApiService {
         @Field("longitude") longitude: Double
     ): Call<InfoCovidResponse>
 
+    @POST("tambahLokasiPasien")
+    @FormUrlEncoded
+    fun tambahLokasiPasienBaru(
+        @Header("x-username") username: String,
+        @Query("token") token: String,
+        @Field("id_pasien") id_pasien: String,
+        @Field("latitude") latitude: Double,
+        @Field("longitude") longitude: Double
+    ): Single<InfoCovidResponse>
 }

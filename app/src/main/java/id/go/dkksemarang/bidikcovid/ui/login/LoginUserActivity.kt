@@ -3,7 +3,8 @@ package id.go.dkksemarang.bidikcovid.ui.login
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
-import android.text.TextUtils
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import id.go.dkksemarang.bidikcovid.util.SessionManager
 import id.go.dkksemarang.bidikcovid.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login_user.*
 
+
 class LoginUserActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var sessionManager: SessionManager
@@ -24,42 +26,11 @@ class LoginUserActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login_user)
         sessionManager = SessionManager(applicationContext)
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-
         observeViewModel()
-        val username = edt_username.text
-        val password = edt_password.text
-
-        btn_login_user.setOnClickListener {
-//            btn_login_user.isEnabled = false
-//            btn_login_user.text = "Loading..."
-            if (TextUtils.isEmpty(username)) {
-                Toast.makeText(
-                    applicationContext,
-                    "Username tidak boleh kosong",
-                    Toast.LENGTH_SHORT
-                ).show()
-                btn_login_user.isEnabled = true
-                btn_login_user.text = "Login"
-
-            } else {
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(
-                        applicationContext,
-                        "Password tidak boleh kosong",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    btn_login_user.isEnabled = true
-                    btn_login_user.text = "Login"
-                } else {
-                    btn_login_user.isEnabled = true
-                    loginViewModel.loginUser(username.toString(), password.toString(), this)
-                    sessionManager.saveAuthUsername(username.toString())
-                    Log.d("Username", "Your Username : ${sessionManager.fetchAuthUsername()}")
-                }
-            }
-
-        }
+        edt_username.addTextChangedListener(loginTextWatcher)
+        edt_password.addTextChangedListener(loginTextWatcher)
     }
+
 
     private fun observeViewModel() {
         loginViewModel.loadError.observe(this, Observer { isError ->
@@ -91,13 +62,43 @@ class LoginUserActivity : AppCompatActivity() {
         loginViewModel.loginResponses.observe(this, Observer {
             it.let {
                 sessionManager.saveAuthToken(it.token)
-                Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, BidikMainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
 
         })
+    }
+
+    private val loginTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            val username = edt_username.text
+            val password = edt_password.text
+            if (username.toString().isEmpty() && password.toString().isEmpty()) {
+                btn_login_user.isEnabled = false
+                btn_login_user.setTextColor(resources.getColor(android.R.color.transparent))
+            } else {
+                btn_login_user.isEnabled = true
+                btn_login_user.setTextColor(resources.getColor(android.R.color.white))
+            }
+            btn_login_user.setOnClickListener {
+                loginViewModel.loginUser(
+                    username.toString(),
+                    password.toString(),
+                    applicationContext
+                )
+                sessionManager.saveAuthUsername(username.toString())
+                Log.d("Username", "Your Username : ${sessionManager.fetchAuthUsername()}")
+            }
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+
+        }
+
     }
 
     override fun getResources(): Resources {

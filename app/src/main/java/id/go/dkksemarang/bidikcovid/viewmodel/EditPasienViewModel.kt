@@ -9,11 +9,13 @@ import androidx.lifecycle.ViewModel
 import id.go.dkksemarang.bidikcovid.model.InfoCovidResponse
 import id.go.dkksemarang.bidikcovid.model.PasienLokasi
 import id.go.dkksemarang.bidikcovid.network.ApiClientService
+import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class EditPasienViewModel : ViewModel() {
+    private val disposable = CompositeDisposable()
     private val covidPasienLokasi: MutableLiveData<PasienLokasi> = MutableLiveData()
     var context: Context? = null
 
@@ -51,5 +53,15 @@ class EditPasienViewModel : ViewModel() {
             }
 
         })
+    }
+
+    fun updateLokasiBaruPasien(
+        username: String,
+        token: String,
+        pasien_id: String,
+        lat: Double,
+        lng: Double
+    ) {
+
     }
 }

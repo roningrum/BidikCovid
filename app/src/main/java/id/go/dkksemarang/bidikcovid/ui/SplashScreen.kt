@@ -20,7 +20,7 @@ class SplashScreen : AppCompatActivity() {
             val intent = Intent(this, LoginUserActivity::class.java)
             startActivity(intent)
             finish()
-        }, 800)
+        }, 5000)
         overridePendingTransition(
             R.anim.splash_in_animation,
             R.anim.splash_out_animation

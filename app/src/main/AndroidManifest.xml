@@ -21,6 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.login.LoginPetugasActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -46,20 +47,19 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name="id.go.dkksemarang.bidikcovid.ui.login.LoginUserActivity"
+            android:name=".ui.login.LoginUserActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".ui.edit.EditPasienActivity"
             android:parentActivityName=".ui.home.BidikMainActivity" />
-
         <activity
             android:name=".ui.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
@@ -69,7 +69,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.search.SearchPasienActivity"
             android:parentActivityName=".ui.home.BidikMainActivity" />
