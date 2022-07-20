@@ -2,8 +2,23 @@
     <string name="app_name">BidikCovid</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="heading_welcome">Selamat Datang di Bidik Covid</string>
-    <string name="content_welcome">untuk mencari nama pasien \n klik ikon \"search\" yang terletak di pojok kanan atas</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_bidik_main">BidikMainActivity</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+
+    <string-array name="status">
+        <item>Semua Pasien</item>
+        <item>kontak erat</item>
+        <item>pelaku perjalanan</item>
+        <item>discarded</item>
+        <item>suspek</item>
+        <item>konfirmasi</item>
+        <item>probable</item>
+        <item>meninggal terkonfirmasi</item>
+        <item>selesai isolasi</item>
+        <item>meninggal probable</item>
+        <item>meninggal negatif</item>
+    </string-array>
+
 </resources>
