@@ -35,6 +35,7 @@ class EditPasienViewModel : ViewModel() {
         val updateLokasiPasien: Call<InfoCovidResponse> =
             ApiClientService().getRetrofitTambahService()
                 .tambahLokasiPasien(username, token, pasien_id, lat, lng)
+//        Log.d("Hasil Tambah", "$username, $pasien_id, $token, $lat, $lng")
         updateLokasiPasien.enqueue(object : Callback<InfoCovidResponse> {
             override fun onFailure(call: Call<InfoCovidResponse>, t: Throwable) {
                 Log.w("Pesan", "Gagal karena ${t.message}")
@@ -53,15 +54,5 @@ class EditPasienViewModel : ViewModel() {
             }
 
         })
-    }
-
-    fun updateLokasiBaruPasien(
-        username: String,
-        token: String,
-        pasien_id: String,
-        lat: Double,
-        lng: Double
-    ) {
-
     }
 }

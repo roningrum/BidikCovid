@@ -9,8 +9,11 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.GooglePlayServicesRepairableException
 import com.google.android.gms.location.places.ui.PlacePicker
+import id.go.dkksemarang.bidikcovid.EditPasienMapActivity
 import id.go.dkksemarang.bidikcovid.R
 import id.go.dkksemarang.bidikcovid.model.PasienLokasi
+import id.go.dkksemarang.bidikcovid.ui.map.PetaPasienFragment
+import id.go.dkksemarang.bidikcovid.ui.search.SearchPasienActivity
 import id.go.dkksemarang.bidikcovid.util.SessionManager
 import id.go.dkksemarang.bidikcovid.viewmodel.EditPasienViewModel
 import kotlinx.android.synthetic.main.content_edit_pasien.*
@@ -42,6 +45,9 @@ class EditPasienActivity : AppCompatActivity() {
     var token: String? = null
     var username: String? = null
 
+//    var lat_update:Double?=null
+//    var lng_update:Double?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_pasien)
@@ -51,6 +57,10 @@ class EditPasienActivity : AppCompatActivity() {
         val sessionManager = SessionManager(this)
         token = sessionManager.fetchAuthToken()
         username = sessionManager.fetchAuthUsername()
+//
+//        lat_update = intent.getDoubleExtra("lat_pasien_update",0.0)
+//        lng_update = intent?.getDoubleExtra("lng_pasien_update",0.0)
+//        simpanUpdateLokasiPasien(lat_update, lng_update)
 
         editPasienViewModel.setPasienCovid().observe(this, Observer { pasienLokasi ->
             if (pasienLokasi.id_pasien != null) {
@@ -71,6 +81,7 @@ class EditPasienActivity : AppCompatActivity() {
         lat = intent.getDoubleExtra(LATITUDE, 0.0)
         lng = intent.getDoubleExtra(LONGITUDE, 0.0)
         pasien_id = intent.getStringExtra(ID_PASIEN)
+
         tv_detail_nama_pasien.text = nama
         tv_detail_alamat_pasien.text = alamat
         tv_detail_id_pasien.text = pasien_id
@@ -88,17 +99,19 @@ class EditPasienActivity : AppCompatActivity() {
         }
 
         btn_edit_lokasi_pasien.setOnClickListener {
-            val builder = PlacePicker.IntentBuilder()
-            try {
-                startActivityForResult(
-                    builder.build(this@EditPasienActivity),
-                    PLACE_PICKER_REQUEST
-                )
-            } catch (e: GooglePlayServicesRepairableException) {
-                e.printStackTrace()
-            } catch (e: GooglePlayServicesNotAvailableException) {
-                e.printStackTrace()
-            }
+            val intent = Intent(this, EditPasienMapActivity::class.java)
+            startActivityForResult(intent, 1)
+//            val builder = PlacePicker.IntentBuilder()
+//            try {
+//                startActivityForResult(
+//                    builder.build(this@EditPasienActivity),
+//                    PLACE_PICKER_REQUEST
+//                )
+//            } catch (e: GooglePlayServicesRepairableException) {
+//                e.printStackTrace()
+//            } catch (e: GooglePlayServicesNotAvailableException) {
+//                e.printStackTrace()
+//            }
         }
     }
 
@@ -111,14 +124,20 @@ class EditPasienActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PLACE_PICKER_REQUEST) {
-            if (resultCode == Activity.RESULT_OK) {
-                val place = PlacePicker.getPlace(data, this)
-                lat = place.latLng.latitude
-                lng = place.latLng.longitude
-                val result = "$lat,$lng"
-                tv_detail_lokasi_pasien.text = result
-                simpanUpdateLokasiPasien(lat, lng)
-            }
+            lat = data?.getDoubleExtra("lat_pasien_update",0.0)
+            lng = data?.getDoubleExtra("lng_pasien_update",0.0)
+            val result = "$lat,$lng"
+            tv_detail_lokasi_pasien.text = result
+            simpanUpdateLokasiPasien(lat, lng)
+
+//            if (resultCode == Activity.RESULT_OK) {
+//                val place = PlacePicker.getPlace(data, this)
+//                lat = place.latLng.latitude
+//                lng = place.latLng.longitude
+//                val result = "$lat,$lng"
+//                tv_detail_lokasi_pasien.text = result
+//                simpanUpdateLokasiPasien(lat, lng)
+//            }
         }
     }
 

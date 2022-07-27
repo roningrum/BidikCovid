@@ -61,6 +61,7 @@ dependencies {
     //map
     implementation "com.google.android.gms:play-services-location:17.1.0"
     implementation "com.google.android.gms:play-services-maps:$playservice_version"
+    implementation 'com.google.android.gms:play-services-basement:17.5.0'
     implementation "com.google.android.gms:play-services-places:$playservice_version"
     implementation 'com.google.maps.android:android-maps-utils:2.0.3'
     //retrofit
